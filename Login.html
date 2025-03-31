@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary-color: #007bff;
+            --hover-color: #0056b3;
+            --background-color: #f0f0f0;
+            --chat-background: white;
+            --incoming-message-color: #e5e5ea;
+            --dropdown-background: #333;
+            --dropdown-item-color: #fff;
+            --dropdown-item-hover: #444;
+            --font-family: Arial, sans-serif;
+            --border-radius: 4px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(to bottom, var(--primary-color), var(--background-color));
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 123, 255, 0.9);
+            padding: 10px 20px;
+            color: white;
+            height: 60px;
+        }
+
+        .navbar img {
+            height: 40px;
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--dropdown-background);
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .dropdown-content a {
+            color: var(--dropdown-item-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--dropdown-item-hover);
+            transform: scale(1.05);
+        }
+
+        .menu-container:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-text {
+            cursor: pointer;
+            transition: color 0.3s, opacity 0.3s;
+            margin-left: 10px;
+        }
+
+        main {
+            padding: 2em;
+            text-align: center;
+            flex: 1;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically */
+        }
+
+        form {
+            background-color: var(--chat-background);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px 0;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 5px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+
+        button {
+            margin-top: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--hover-color);
+        }
+
+        input:focus,
+        button:focus {
+            outline: 2px solid var(--primary-color);
+        }
+
+        .register-here {
+            margin-top: 20px;
+            font-size: 1em;
+            text-align: center; /* Center the text for better visual alignment */
+        }
+
+        .register-here a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .register-here a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Kauno Zaliakalnio Progimnazija Logo">
+        <h1 class="navbar-title">SūdžiusAI</h1>
+        <div class="menu-container">
+            <div class="dropdown" role="menu">
+                <span class="menu-text" role="button" aria-haspopup="true" aria-expanded="false">Menu</span>
+                <div class="dropdown-content" role="menuitem" aria-hidden="true">
+                    <a href="index.html" id="home-link" aria-current="page">Home</a>
+                    <a href="about.html" aria-label="About page">About</a>
+                    <a href="Login.html" aria-label="Log In page">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <h1>Welcome</h1>
+        
+        <div class="form-container">
+            <form id="login-form" action="/login" method="POST">
+                <h2>Login</h2>
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="email" required>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required>
+                <button type="submit">Log In</button>
+                <!-- Moved "Or Register Here" Section inside the form -->
+                <div class="register-here">
+                    <p>Or <a href="signup.html">Register Here</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
