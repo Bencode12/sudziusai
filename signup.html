@@ -19,11 +19,21 @@
             --border-radius: 4px;
         }
 
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --primary-color: #1a1a1a;
+            --background-color: #333;
+            --chat-background: #444;
+            --incoming-message-color: #555;
+        }
+
+        /* Body and Navbar styles */
         body {
             font-family: var(--font-family);
             background: linear-gradient(to bottom, var(--primary-color), var(--background-color));
             margin: 0;
             padding: 0;
+            transition: background 0.3s;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -33,10 +43,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgba(0, 123, 255, 0.9);
-            padding: 10px 20px;
+            padding: 20px;
             color: white;
-            height: 60px;
+            position: relative; 
         }
 
         .navbar img {
@@ -48,31 +57,40 @@
             font-weight: bold;
         }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
+        /* Dropdown styles */
         .menu-container {
             display: flex;
             align-items: center;
+            position: relative;
+        }
+
+        .menu-button {
+            cursor: pointer; 
+            transition: opacity 0.2s ease; 
+            outline: none; /* Remove outline */
         }
 
         .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dropdown-background);
-            min-width: 160px;
+            display: none; 
+            position: absolute; 
+            background-color: var(--dropdown-background); 
+            min-width: 160px; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 8px;
+            z-index: 1; 
+            border-radius: 8px; 
             overflow: hidden;
             left: 50%;
             transform: translateX(-50%);
             top: 100%;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.2s ease, visibility 0.2s ease; 
+        }
+
+        .dropdown-content ul {
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
         }
 
         .dropdown-content a {
@@ -88,16 +106,16 @@
             transform: scale(1.05);
         }
 
-        .menu-container:hover .dropdown-content {
+        /* Show dropdown on hover and fade effects */
+        .menu-container:hover .dropdown-content,
+        .menu-button:focus + .dropdown-content {
             display: block;
             opacity: 1;
             visibility: visible;
         }
 
-        .menu-text {
-            cursor: pointer;
-            transition: color 0.3s, opacity 0.3s;
-            margin-left: 10px;
+        .menu-container:hover .menu-button {
+            opacity: 0; 
         }
 
         main {
@@ -191,25 +209,111 @@
         .register-here a:hover {
             text-decoration: underline;
         }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it covers the entire screen */
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            animation: spin 2s linear infinite; /* Animation for spinning effect */
+        }
+
+        /* Animation Keyframes */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Text Styles */
+        .loading-screen p {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333; /* Dark text color */
+        }
+
+        /* Dark Mode Toggle Styles */
+        .toggle-container {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .toggle-switch {
+            display: none;
+        }
+
+        .switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--primary-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #E9F8FD;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch:checked + .switch {
+            background: #F5EC59;
+        }
+
+        .toggle-switch:checked + .switch .fill {
+            transform: translateX(30px);
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Screen Container -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+
     <div class="navbar">
-        <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Kauno Zaliakalnio Progimnazija Logo">
+        <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Logo">
         <h1 class="navbar-title">SūdžiusAI</h1>
         <div class="menu-container">
-            <div class="dropdown" role="menu">
-                <span class="menu-text" role="button" aria-haspopup="true" aria-expanded="false">Menu</span>
-                <div class="dropdown-content" role="menuitem" aria-hidden="true">
-                    <a href="index.html" id="home-link" aria-current="page">Home</a>
-                    <a href="about.html" aria-label="About page">About</a>
-                    <a href="Login.html" aria-label="Log In page">Log In</a>
-                </div>
+            <div class="menu-button" tabindex="0" aria-haspopup="true" aria-expanded="false" role="button">
+                <span class="menu-text" aria-label="Menu">Menu</span>
+            </div>
+            <div class="dropdown-content" aria-hidden="true">
+                <ul>
+                    <li><a href="index.html" id="home-link" aria-current="page">Home</a></li>
+                    <li><a href="about.html" aria-label="About page">About</a></li>
+                    <li><a href="Login.html" aria-label="Log In page">Log In</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <main>
+    <main style="display: none;"> <!-- Initially hidden -->
         <h2>Create an Account</h2>
         <div class="form-container">
             <form action="register.php" method="POST" aria-labelledby="register-form">
@@ -231,7 +335,30 @@
                 <p>Already have an account? <a href="Login.html">Log In</a></p>
             </div>
         </div>
+
+        <div class="toggle-container" aria-label="Toggle dark mode">
+            <input type="checkbox" id="toggle" class="toggle-switch" aria-hidden="true">
+            <label for="toggle" class="switch">
+                <div class="fill"></div>
+                <span class="toggle-label">🌙</span> <!-- Moon icon for dark mode -->
+            </label>
+        </div>
     </main>
 
+    <script>
+        // Simulate loading time
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
+                document.querySelector('main').style.display = 'block'; // Show main content
+            }, 2000); // Loading time set to 2 seconds
+        };
+
+        // Dark mode toggle functionality
+        const toggleSwitch = document.getElementById('toggle');
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+    </script>
 </body>
 </html>
