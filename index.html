@@ -331,7 +331,7 @@
             border: 16px solid #f3f3f3; /* Light grey */
             border-top: 16px solid #3498db; /* Blue */
             border-radius: 50%;
-            animation: spin 2s linear infinite; /* Animation for spinning effect */
+            animation: spin 1s linear infinite; /* Animation for spinning effect */
         }
 
         /* Animation Keyframes */
@@ -351,9 +351,7 @@
 <body>
     <!-- Loading Screen Container -->
     <div class="loading-screen">
-        <div class="loader">
-            <div class="loader-animation"></div>
-        </div>
+        <div class="loader"></div>
         <p>Loading...</p>
     </div>
 
@@ -410,7 +408,7 @@
             setTimeout(function() {
                 document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
                 document.querySelector('.content').style.display = 'block'; // Show main content
-            }, 200); // Adjust time as needed
+            }, 1000); // Adjusted time to 1 second
         };
 
         const input = document.getElementById('message-input');
@@ -534,7 +532,7 @@
         setInterval(updateClock, 1000); 
         updateClock(); 
 
-        const toggleSwitch = document.getElementById('toggle');
+        // Dark mode toggle
         toggleSwitch.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode', toggleSwitch.checked);
         });
