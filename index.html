@@ -370,9 +370,9 @@
                 </div>
                 <div class="dropdown-content" aria-hidden="true">
                     <ul>
-                        <li><a href="index.html" id="home-link" aria-current="page">Pagrindinis</a></li>
-                        <li><a href="about.html" aria-label="About page">Apie</a></li>
-                        <li><a href="Login.html" aria-label="Log In page">Prisijungti</a></li>
+                        <li><a href="index.html" id="home-link" aria-current="page">Home</a></li>
+                        <li><a href="about.html" aria-label="About page">About</a></li>
+                        <li><a href="Login.html" aria-label="Log In page">Log in</a></li>
                     </ul>
                 </div>
             </div>
@@ -534,7 +534,7 @@
         setInterval(updateClock, 1000); 
         updateClock(); 
 
-        // Dark mode toggle
+        const toggleSwitch = document.getElementById('toggle');
         toggleSwitch.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode', toggleSwitch.checked);
         });
