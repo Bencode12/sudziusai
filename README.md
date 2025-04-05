@@ -6,7 +6,7 @@ It was made only with that intention.
 | Status                                                               | Project                                                             |
 |------------------------------------------------------------------------|----------------------------------------------------------------------|
 | ![Done](https://img.shields.io/badge/status-Done-brightgreen)         | Day/Night mode                                           |
-| ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| API, Backend, DB                                         |
+| ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| API (Gemini AI), Backend, DB                                         |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides, image and screenshot reading               |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Easy phoone access                                       |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Discord Server                                           |       
@@ -14,3 +14,4 @@ It was made only with that intention.
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Laying over multiple stuff on the screen                 |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Eduka answers                                            |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Discussions                                              |
+| ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Tamo API                                              |
