@@ -338,13 +338,12 @@
     </main>
 
     <script>
-    <script>    
         // Simulate loading time
         window.onload = function() {
             setTimeout(function() {
                 document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
-                document.querySelector('.content').style.display = 'block'; // Show main content
-            }, 2000); // Adjusted time to 1 second
+                document.querySelector('main').style.display = 'block'; // Show main content
+            }, 2000); // Adjusted time to 2 seconds
         };
 
         // Dark mode toggle functionality
