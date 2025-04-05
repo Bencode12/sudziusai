@@ -3,7 +3,7 @@ It was made only with that intention.
 
 # Projektų roadmap'as
 
-| Staturas                                                                | Veikla                                                               |
+| Status                                                               | Project                                                             |
 |------------------------------------------------------------------------|----------------------------------------------------------------------|
 | ![Done](https://img.shields.io/badge/status-Done-brightgreen)         | Day/Night mode                                           |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| API, Backend, DB                                         |
