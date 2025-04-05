@@ -381,7 +381,7 @@
                 <div class="chat-box" id="chat-box" aria-live="assertive" aria-label="Chat messages"></div>
                 <div class="input-container">
                     <input type="text" id="message-input" placeholder="Ask me anything!" aria-label="Message input" maxlength="200">
-                    <button id="send-button" aria-label="send message" role="button">Send</button>
+                    <button id="send-button" aria-label="send message" role="button">Send Message</button>
                 </div>
             </div>
 
@@ -408,7 +408,7 @@
             setTimeout(function() {
                 document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
                 document.querySelector('.content').style.display = 'block'; // Show main content
-            }, 2000); // Adjusted time to 1 second
+            }, 1000); // Adjusted time to 1 second
         };
 
         const input = document.getElementById('message-input');
