@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In / Sign Up</title>
+    <title>Sign In / Sign Up - SūdžiusAI</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* CSS Variables for theming */
@@ -12,7 +12,6 @@
             --hover-color: #0056b3;
             --background-color: #f0f0f0;
             --chat-background: white;
-            --incoming-message-color: #e5e5ea;
             --dropdown-background: #333;
             --dropdown-item-color: #fff;
             --dropdown-item-hover: #444;
@@ -20,11 +19,20 @@
             --border-radius: 4px;
         }
 
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --primary-color: #1a1a1a;
+            --background-color: #333;
+            --chat-background: #444;
+        }
+
+        /* Body and Navbar styles */
         body {
             font-family: var(--font-family);
             background: linear-gradient(to bottom, var(--primary-color), var(--background-color));
             margin: 0;
             padding: 0;
+            transition: background 0.3s;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -34,10 +42,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: rgba(0, 123, 255, 0.9);
-            padding: 10px 20px;
+            padding: 20px;
             color: white;
-            height: 60px;
+            position: relative; 
         }
 
         .navbar img {
@@ -49,31 +56,56 @@
             font-weight: bold;
         }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
+        /* Dropdown styles */
         .menu-container {
             display: flex;
             align-items: center;
+            position: relative; /* Set relative positioning for dropdown */
+        }
+
+        .menu-button {
+            cursor: pointer; 
+            transition: opacity 0.2s ease; 
+            outline: none; /* Remove outline */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+        }
+
+                .menu-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .menu-button {
+            cursor: pointer; 
+            transition: opacity 0.2s ease; 
+            outline: none; /* Remove outline */
         }
 
         .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--dropdown-background);
-            min-width: 160px;
+            display: none; 
+            position: absolute; 
+            background-color: var(--dropdown-background); 
+            min-width: 160px; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 8px;
+            z-index: 1; 
+            border-radius: 8px; 
             overflow: hidden;
             left: 50%;
             transform: translateX(-50%);
             top: 100%;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.2s ease, visibility 0.2s ease; 
+        }
+
+        .dropdown-content ul {
+            list-style-type: none; 
+            padding: 0; 
+            margin: 0; 
         }
 
         .dropdown-content a {
@@ -89,16 +121,16 @@
             transform: scale(1.05);
         }
 
-        .menu-container:hover .dropdown-content {
+        /* Show dropdown on hover and fade effects */
+        .menu-container:hover .dropdown-content,
+        .menu-button:focus + .dropdown-content {
             display: block;
             opacity: 1;
             visibility: visible;
         }
 
-        .menu-text {
-            cursor: pointer;
-            transition: color 0.3s, opacity 0.3s;
-            margin-left: 10px;
+        .menu-container:hover .menu-button {
+            opacity: 0; 
         }
 
         main {
@@ -179,7 +211,7 @@
         }
 
         .register-here {
-            margin-top: 20px;
+            margin-top: 10px; /* Adjusted margin for better spacing */
             font-size: 1em;
             text-align: center; /* Center the text for better visual alignment */
         }
@@ -192,42 +224,161 @@
         .register-here a:hover {
             text-decoration: underline;
         }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it covers the entire screen */
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            animation: spin 2s linear infinite; /* Animation for spinning effect */
+        }
+
+        /* Animation Keyframes */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Dark Mode Toggle Styles */
+        .toggle-container {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .toggle-switch {
+            display: none;
+        }
+
+        .switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--primary-color);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #E9F8FD;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch:checked + .switch {
+            background: #F5EC59;
+        }
+
+        .toggle-switch:checked + .switch .fill {
+            transform: translateX(30px);
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Screen Container -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+
     <div class="navbar">
-        <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Kauno Zaliakalnio Progimnazija Logo">
+        <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Logo">
         <h1 class="navbar-title">SūdžiusAI</h1>
         <div class="menu-container">
-            <div class="dropdown" role="menu">
-                <span class="menu-text" role="button" aria-haspopup="true" aria-expanded="false">Menu</span>
-                <div class="dropdown-content" role="menuitem" aria-hidden="true">
-                    <a href="index.html" id="home-link" aria-current="page">Home</a>
-                    <a href="about.html" aria-label="About page">About</a>
-                    <a href="Login.html" aria-label="Log In page">Log In</a>
-                </div>
+            <button class="menu-button" tabindex="0" aria-haspopup="true" aria-expanded="false">
+                Menu
+            </button>
+            <div class="dropdown-content" aria-hidden="true">
+                <ul>
+                    <li><a href="index.html" id="home-link" aria-current="page">Home</a></li>
+                    <li><a href="about.html" aria-label="About page">About</a></li>
+                    <li><a href="Login.html" aria-label="Log In page">Log In</a></li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <main class="container">
+    <main style="display: none;"> <!-- Initially hidden -->
         <h1>Welcome</h1>
-        
         <div class="form-container">
-            <form id="login-form" action="/login" method="POST">
+            <form id="login-form" action="/login" method="POST" aria-labelledby="login-form">
                 <h2>Login</h2>
                 <label for="login-email">Email:</label>
-                <input type="email" id="login-email" name="email" required>
+                <input type="email" id="login-email" name="email" required aria-required="true">
                 <label for="login-password">Password:</label>
-                <input type="password" id="login-password" name="password" required>
+                <input type="password" id="login-password" name="password" required aria-required="true">
                 <button type="submit">Log In</button>
-                <!-- Moved "Or Register Here" Section inside the form -->
-                <div class="register-here">
-                    <p>Or <a href="signup.html">Register Here</a></p>
-                </div>
             </form>
+            <div class="register-here">
+                <p>Or <a href="signup.html">Register Here</a></p>
+            </div>
+        </div>
+
+        <div class="toggle-container" aria-label="Toggle dark mode">
+            <input type="checkbox" id="toggle" class="toggle-switch" aria-hidden="true">
+            <label for="toggle" class="switch">
+                <div class="fill"></div>
+            </label>
         </div>
     </main>
 
+    <script>
+        // Simulate loading time
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
+                document.querySelector('main').style.display = 'block'; // Show main content
+            }, 2000); // Loading time set to 2 seconds
+        };
+
+        // Dark mode toggle functionality
+        const toggleSwitch = document.getElementById('toggle');
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+
+        // Dropdown menu functionality
+        const menuButton = document.querySelector('.menu-button');
+        const dropdownContent = document.querySelector('.dropdown-content');
+
+        menuButton.addEventListener('click', () => {
+            const isOpen = dropdownContent.style.display === 'block';
+            dropdownContent.style.display = isOpen ? 'none' : 'block';
+            dropdownContent.style.opacity = isOpen ? '0' : '1';
+            dropdownContent.style.visibility = isOpen ? 'hidden' : 'visible';
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!menuButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+                dropdownContent.style.display = 'none';
+                dropdownContent.style.opacity = '0';
+                dropdownContent.style.visibility = 'hidden';
+            }
+        });
+    </script>
 </body>
 </html>
