@@ -1,7 +1,7 @@
 SūdžiusAI is an AI based website that helps people learn Chemistry and Biology.
 It was made only with that intention.
 
-# Projektų roadmap'as
+# Project roadmap
 
 | Status                                                               | Project                                                             |
 |------------------------------------------------------------------------|----------------------------------------------------------------------|
