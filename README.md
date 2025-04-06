@@ -5,7 +5,6 @@ It was made only with that intention.
 
 | Status                                                               | Project                                                             |
 |------------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![Done](https://img.shields.io/badge/status-Done-brightgreen)         | Day/Night mode                                           |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| API (Gemini AI), Backend, DB                             |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides, image and screenshot reading               |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Easy phoone access                                       |
