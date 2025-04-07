@@ -417,11 +417,6 @@
             robotEmoji.textContent = '🤖';
             welcomeElement.appendChild(robotEmoji);
             
-            // Welcome text
-            welcomeElement.innerHTML += "Hello! I'm SūdžiusAI powered by Gemini. How can I help you today?";
-            
-            chatBox.appendChild(welcomeElement);
-        }
     
         async function sendMessage() {
             const message = input.value.trim();
@@ -460,9 +455,9 @@
                     },
                     body: JSON.stringify({
                         prompt: message,
-                        model: "models/gemini-1.5-pro",
+                        model: "models/gemini-2.5-pro",
                         temperature: 0.7,
-                        max_tokens: 200
+                        max_tokens: 2000
                     })
                 });
     
