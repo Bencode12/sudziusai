@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In / Sign Up - SūdžiusAI</title>
+    <title>Sign In - SūdžiusAI</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* CSS Variables for theming */
@@ -71,18 +71,6 @@
             border: none;
             color: white;
             font-size: 16px;
-        }
-
-                .menu-container {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .menu-button {
-            cursor: pointer; 
-            transition: opacity 0.2s ease; 
-            outline: none; /* Remove outline */
         }
 
         .dropdown-content {
@@ -189,69 +177,29 @@
             box-sizing: border-box; /* Ensure padding is included in width */
         }
 
-        /* Dropdown styles */
-        .menu-container {
-            display: flex;
-            align-items: center;
-            position: relative;
+        button {
+            margin-top: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
-        .menu-button {
-            cursor: pointer; 
-            transition: opacity 0.2s ease; 
-            outline: none; /* Remove outline */
+        button:hover {
+            background-color: var(--hover-color);
         }
 
-        .dropdown-content {
-            display: none; 
-            position: absolute; 
-            background-color: var(--dropdown-background); 
-            min-width: 160px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1; 
-            border-radius: 8px; 
-            overflow: hidden;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 100%;
-            opacity: 0; 
-            visibility: hidden; 
-            transition: opacity 0.2s ease, visibility 0.2s ease; 
-        }
-
-        .dropdown-content ul {
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0; 
-        }
-
-        .dropdown-content a {
-            color: var(--dropdown-item-color);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--dropdown-item-hover);
-            transform: scale(1.05);
-        }
-
-        /* Show dropdown on hover and fade effects */
-        .menu-container:hover .dropdown-content,
-        .menu-button:focus + .dropdown-content {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .menu-container:hover .menu-button {
-            opacity: 0; 
+        input:focus,
+        button:focus {
+            outline: 2px solid var(--primary-color);
         }
 
         .register-here {
-            margin-top: 10px; /* Adjusted margin for better spacing */
+            margin-top: 20px;
             font-size: 1em;
             text-align: center; /* Center the text for better visual alignment */
         }
@@ -348,29 +296,28 @@
         <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Logo">
         <h1 class="navbar-title">SūdžiusAI</h1>
         <div class="menu-container">
-            <button class="menu-button" tabindex="0" aria-haspopup="true" aria-expanded="false">
-                Menu
-            </button>
+            <div class="menu-button" tabindex="0" aria-haspopup="true" aria-expanded="false" role="button">
+                <span class="menu-text" aria-label="Menu">Menu</span>
+            </div>
             <div class="dropdown-content" aria-hidden="true">
                 <ul>
                     <li><a href="index.html" id="home-link" aria-current="page">Home</a></li>
                     <li><a href="about.html" aria-label="About page">About</a></li>
-                    <li><a href="Login.html" aria-label="Log In page">Log In</a></li>
+                    <li><a href="signup.html" aria-label="Sign Up page">Sign Up</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <main style="display: none;"> <!-- Initially hidden -->
-        <h1>Welcome</h1>
+        <h2>Log In</h2>
         <div class="form-container">
             <form id="login-form" action="/login" method="POST" aria-labelledby="login-form">
-                <h2>Login</h2>
                 <label for="login-email">Email:</label>
                 <input type="email" id="login-email" name="email" required aria-required="true">
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" name="password" required aria-required="true">
-                <button type="submit">Log In</button>
+                <button type="submit">Log In</button> <!-- Log In button -->
             </form>
             <div class="register-here">
                 <p>Or <a href="signup.html">Register Here</a></p>
@@ -398,26 +345,6 @@
         const toggleSwitch = document.getElementById('toggle');
         toggleSwitch.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-        });
-
-        // Dropdown menu functionality
-        const menuButton = document.querySelector('.menu-button');
-        const dropdownContent = document.querySelector('.dropdown-content');
-
-        menuButton.addEventListener('click', () => {
-            const isOpen = dropdownContent.style.display === 'block';
-            dropdownContent.style.display = isOpen ? 'none' : 'block';
-            dropdownContent.style.opacity = isOpen ? '0' : '1';
-            dropdownContent.style.visibility = isOpen ? 'hidden' : 'visible';
-        });
-
-        // Close dropdown when clicking outside
-        window.addEventListener('click', (event) => {
-            if (!menuButton.contains(event.target) && !dropdownContent.contains(event.target)) {
-                dropdownContent.style.display = 'none';
-                dropdownContent.style.opacity = '0';
-                dropdownContent.style.visibility = 'hidden';
-            }
         });
     </script>
 </body>
