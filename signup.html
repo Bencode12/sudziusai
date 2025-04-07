@@ -210,34 +210,18 @@
             text-decoration: underline;
         }
 
-        /* Loading Screen Styles */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* Ensure it covers the entire screen */
+        .error-message {
+            color: #dc3545;
+            margin-top: 5px;
+            font-size: 0.9em;
         }
-
-        .loader {
-            width: 100px;
-            height: 100px;
-            border: 16px solid #f3f3f3; /* Light grey */
-            border-top: 16px solid #3498db; /* Blue */
-            border-radius: 50%;
-            animation: spin 1s linear infinite; /* Animation for spinning effect */
-        }
-
-        /* Keyframes for spinning animation */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .success-message {
+            color: #28a745;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #d4edda;
+            border-radius: var(--border-radius);
         }
 
         /* Dark Mode Toggle Styles */
@@ -280,15 +264,15 @@
         .toggle-switch:checked + .switch .fill {
             transform: translateX(30px);
         }
+        
+        .pin-info {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
-    <!-- Loading Screen Container -->
-    <div class="loading-screen">
-        <div class="loader"></div>
-        <p>Loading...</p>
-    </div>
-
     <div class="navbar">
         <img src="Kauno-Zaliakalnio-progimnazija_logo-e1679002355734-300x300.jpg" alt="Logo">
         <h1 class="navbar-title">SūdžiusAI</h1>
@@ -306,23 +290,33 @@
         </div>
     </div>
 
-    <main style="display: none;"> <!-- Initially hidden -->
+    <main>
         <h2>Create an Account</h2>
         <div class="form-container">
-            <form action="register.php" method="POST" aria-labelledby="register-form">
+            <form id="register-form" aria-labelledby="register-form">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required aria-required="true">
+                <div id="username-error" class="error-message"></div>
 
-                <label for="PIN">PIN:</label>
-                <input type="PIN" id="PIN" name="PIN" required aria-required="true">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+                <div id="email-error" class="error-message"></div>
+
+                <label for="pin">PIN Code:</label>
+                <input type="text" id="pin" name="pin" required aria-required="true">
+                <div id="pin-error" class="error-message"></div>
+                <div class="pin-info">Enter the PIN code you received from an administrator.</div>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required aria-required="true">
+                <div id="password-error" class="error-message"></div>
 
                 <label for="confirm-password">Confirm Password:</label>
                 <input type="password" id="confirm-password" name="confirm-password" required aria-required="true">
+                <div id="confirm-password-error" class="error-message"></div>
 
                 <button type="submit">Register</button>
+                <div id="form-message"></div>
             </form>
             <div class="register-here">
                 <p>Already have an account? <a href="Login.html">Log In</a></p>
@@ -338,13 +332,127 @@
     </main>
 
     <script>
-        // Simulate loading time
-        window.onload = function() {
-            setTimeout(function() {
-                document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
-                document.querySelector('main').style.display = 'block'; // Show main content
-            }, 2000); // Adjusted time to 2 seconds
-        };
+        // Configuration - Use hardcoded URL for Replit
+        const API_URL = window.location.protocol + "//" + window.location.host;
+        const API_ENDPOINT = API_URL + "/api/register";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('register-form');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Clear previous error messages
+                clearErrors();
+                
+                // Get form values
+                const username = document.getElementById('username').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const pin = document.getElementById('pin').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                // Validate form inputs
+                let isValid = true;
+                
+                if (!username) {
+                    showError('username', 'Username is required');
+                    isValid = false;
+                }
+                
+                if (!email) {
+                    showError('email', 'Email is required');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                if (!pin) {
+                    showError('pin', 'PIN code is required');
+                    isValid = false;
+                }
+                
+                if (!password) {
+                    showError('password', 'Password is required');
+                    isValid = false;
+                } else if (password.length < 8) {
+                    showError('password', 'Password must be at least 8 characters long');
+                    isValid = false;
+                }
+                
+                if (password !== confirmPassword) {
+                    showError('confirm-password', 'Passwords do not match');
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    try {
+                        // Submit form data to API
+                        const response = await fetch(API_ENDPOINT, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                username,
+                                email,
+                                pin,
+                                password
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok) {
+                            // Registration successful
+                            form.reset();
+                            showFormMessage('Registration successful! You can now <a href="Login.html">log in</a>.', 'success');
+                        } else {
+                            // Registration failed
+                            if (data.error.includes('Username already exists')) {
+                                showError('username', 'This username is already taken');
+                            } else if (data.error.includes('Email already exists')) {
+                                showError('email', 'This email is already registered');
+                            } else if (data.error.includes('Invalid PIN code')) {
+                                showError('pin', 'Invalid PIN code or already used');
+                            } else {
+                                showFormMessage('Registration failed: ' + data.error, 'error');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        showFormMessage('An error occurred. Please try again later.', 'error');
+                    }
+                }
+            });
+            
+            // Validate email format
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Display error message
+            function showError(fieldId, message) {
+                const errorElement = document.getElementById(`${fieldId}-error`);
+                errorElement.textContent = message;
+            }
+            
+            // Clear all error messages
+            function clearErrors() {
+                const errorElements = document.querySelectorAll('.error-message');
+                errorElements.forEach(element => element.textContent = '');
+                document.getElementById('form-message').innerHTML = '';
+            }
+            
+            // Display form message (success or error)
+            function showFormMessage(message, type) {
+                const messageElement = document.getElementById('form-message');
+                messageElement.innerHTML = message;
+                messageElement.className = type === 'success' ? 'success-message' : 'error-message';
+            }
+        });
 
         // Dark mode toggle functionality
         const toggleSwitch = document.getElementById('toggle');
