@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -383,6 +382,10 @@
             robotEmoji.textContent = '🤖';
             welcomeElement.appendChild(robotEmoji);
             
+            // Add welcome text
+            welcomeElement.innerHTML += "Sveiki! Aš esu SūdžiusAI. Kuo galiu padėti?";
+            chatBox.appendChild(welcomeElement);
+        }
     
         async function sendMessage() {
             const message = input.value.trim();
