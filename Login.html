@@ -283,6 +283,17 @@
         .toggle-switch:checked + .switch .fill {
             transform: translateX(30px);
         }
+
+        /* Error message styles */
+        .error-message {
+            color: #d9534f;
+            background-color: #f9f2f2;
+            border: 1px solid #ebccd1;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -297,30 +308,31 @@
         <h1 class="navbar-title">SūdžiusAI</h1>
         <div class="menu-container">
             <div class="menu-button" tabindex="0" aria-haspopup="true" aria-expanded="false" role="button">
-                <span class="menu-text" aria-label="Menu">Menu</span>
+                <span class="menu-text" aria-label="Menu">Meniu</span>
             </div>
             <div class="dropdown-content" aria-hidden="true">
                 <ul>
-                    <li><a href="index.html" id="home-link" aria-current="page">Home</a></li>
-                    <li><a href="about.html" aria-label="About page">About</a></li>
-                    <li><a href="Login.html" aria-label="Sign Up page">Log in</a></li>
+                    <li><a href="index.html" id="home-link" aria-current="page">Pagrindinis</a></li>
+                    <li><a href="about.html" aria-label="About page">Apie</a></li>
+                    <li><a href="Login.html" aria-label="Log in">Prisijungti</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <main style="display: none;"> <!-- Initially hidden -->
-        <h2>Log In</h2>
+        <h2>Prisijungti</h2>
         <div class="form-container">
-            <form id="login-form" action="/login" method="POST" aria-labelledby="login-form">
-                <label for="login-email">Email:</label>
-                <input type="email" id="login-email" name="email" required aria-required="true">
-                <label for="login-password">Password:</label>
+            <div id="error-message" class="error-message"></div>
+            <form id="login-form">
+                <label for="login-username">Vardas:</label>
+                <input type="text" id="login-username" name="username" required aria-required="true">
+                <label for="login-password">Slaptažodis:</label>
                 <input type="password" id="login-password" name="password" required aria-required="true">
-                <button type="submit">Log In</button> <!-- Log In button -->
+                <button type="submit">Prisijunk</button> <!-- Log In button -->
             </form>
             <div class="register-here">
-                <p>Or <a href="signup.html">Register Here</a></p>
+                <p>Arba <a href="signup.html">registruok</a></p>
             </div>
         </div>
 
@@ -338,13 +350,73 @@
             setTimeout(function() {
                 document.querySelector('.loading-screen').style.display = 'none'; // Hide loading screen
                 document.querySelector('main').style.display = 'block'; // Show main content
-            }, 2000); // Loading time set to 2 seconds
+            }, 1000); // Loading time set to 1 second
         };
 
         // Dark mode toggle functionality
         const toggleSwitch = document.getElementById('toggle');
         toggleSwitch.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            // Clear previous error messages
+            errorMessage.style.display = 'none';
+            errorMessage.textContent = '';
+            
+            // Show loading screen
+            document.querySelector('.loading-screen').style.display = 'flex';
+            
+            // Send login request to API
+            fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                }),
+                credentials: 'same-origin'
+            })
+            .then(response => {
+                // Parse JSON response regardless of status code
+                return response.json().then(data => {
+                    // Add status to the response data to check it later
+                    return { ...data, status: response.status };
+                });
+            })
+            .then(data => {
+                // Check if login was successful
+                if (data.status === 200) {
+                    console.log('Login successful!', data);
+                    // Store API key in localStorage for later use
+                    if (data.api_key) {
+                        localStorage.setItem('api_key', data.api_key);
+                    }
+                    // Redirect to chat UI
+                    window.location.href = '/simple_chat.html';
+                } else {
+                    // Handle error from server
+                    throw new Error(data.error || 'Invalid username or password');
+                }
+            })
+            .catch(error => {
+                console.error('Login error:', error);
+                // Hide loading screen
+                document.querySelector('.loading-screen').style.display = 'none';
+                
+                // Display error message
+                errorMessage.textContent = error.message || 'Login failed. Please try again.';
+                errorMessage.style.display = 'block';
+            });
         });
     </script>
 </body>
