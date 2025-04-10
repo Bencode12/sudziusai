@@ -15,3 +15,5 @@ It was made only with that intention.
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Eduka answers                                            |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Discussions                                              |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Tamo API                                                 |
+| ![Idea](https://img.shields.io/badge/status-Idea-blue)                | New UI                                                 |
+| ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Custom UI                                                 |
