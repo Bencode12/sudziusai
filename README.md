@@ -11,9 +11,8 @@ It was made only with that intention.
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Discord Server                                           |       
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Add User Settings                                        |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Multiple language select                                 |
+| ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)                | New UI                                                 |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Laying over multiple stuff on the screen                 |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Eduka answers                                            |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Discussions                                              |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Tamo API                                                 |
-| ![Idea](https://img.shields.io/badge/status-Idea-blue)                | New UI                                                 |
-| ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Custom UI                                                 |
