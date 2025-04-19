@@ -356,79 +356,155 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const loadingScreen = document.querySelector(".loading-screen");
-            const content = document.querySelector(".content");
-            const sendButton = document.getElementById("send-button");
-            const messageInput = document.getElementById("message-input");
-            const chatBox = document.getElementById("chat-box");
-            const darkModeToggle = document.getElementById("dark-mode-toggle");
+    <!-- Modify only the fetch API part in your script section -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const loadingScreen = document.querySelector(".loading-screen");
+    const content = document.querySelector(".content");
+    const sendButton = document.getElementById("send-button");
+    const messageInput = document.getElementById("message-input");
+    const chatBox = document.getElementById("chat-box");
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-            // Simulate loading process and then display the chat UI
-            setTimeout(() => {
-                loadingScreen.style.display = "none";
-                content.style.display = "block";
-            }, 3000); // Adjust the loading screen duration as needed
+    // Simulate loading process and then display the chat UI
+    setTimeout(() => {
+        loadingScreen.style.display = "none";
+        content.style.display = "block";
+    }, 3000); // Adjust the loading screen duration as needed
 
-            // Dark mode toggle
-            darkModeToggle.addEventListener("change", function() {
-                document.body.classList.toggle("dark-mode", darkModeToggle.checked);
-            });
+    // Dark mode toggle
+    darkModeToggle.addEventListener("change", function() {
+        document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+    });
 
-            // Send message when button clicked
-            sendButton.addEventListener("click", function() {
-                const message = messageInput.value.trim();
-                if (message !== "") {
-                    displayMessage(message, "outgoing");
-                    messageInput.value = "";
+    // Send message when button clicked
+    sendButton.addEventListener("click", sendMessage);
+    
+    // Also listen for Enter key in input field
+    messageInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
 
-                    // Simulate loading response
-                    showLoadingMessage();
+    function sendMessage() {
+        const message = messageInput.value.trim();
+        if (message !== "") {
+            displayMessage(message, "outgoing");
+            messageInput.value = "";
 
-                    // Send message to backend
-                    fetch('https://geminibackend-357741312903.us-central1.run.app', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ message: message })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const botMessage = data.response || "Sorry, I couldn't process that.";
-                        displayMessage(botMessage, "incoming");
-                    })
-                    .catch(error => {
-                        displayMessage("Error connecting to the API. Please try again.", "incoming");
-                    });
+            // Show loading indicator
+            const loadingMsgElement = showLoadingMessage();
+
+            // Backend URL
+            const backendUrl = 'https://geminibackend-357741312903.us-central1.run.app';
+            
+            // Log the request to console for debugging
+            console.log("Sending request to:", backendUrl);
+            console.log("Request payload:", { message });
+
+            // Send message to backend with explicit no-cors mode
+            fetch(backendUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
                 }
-            });
-
-            function displayMessage(message, type) {
-                const messageElement = document.createElement("div");
-                messageElement.classList.add("chat-message", type);
-
-                if (type === "incoming") {
-                    const emoji = document.createElement("div");
-                    emoji.classList.add("robot-emoji");
-                    emoji.innerText = "🤖";
-                    messageElement.appendChild(emoji);
+                return response.json();
+            })
+            .then(data => {
+                // Remove the loading message
+                if (loadingMsgElement) {
+                    chatBox.removeChild(loadingMsgElement);
                 }
-
-                messageElement.innerText = message;
-                chatBox.appendChild(messageElement);
-                chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
-            }
-
-            function showLoadingMessage() {
-                const loadingMessage = document.createElement("div");
-                loadingMessage.classList.add("chat-message", "incoming");
-                loadingMessage.innerText = "Loading...";
-                chatBox.appendChild(loadingMessage);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
+                
+                // Display the actual response
+                const botMessage = data.response || "Sorry, I couldn't process that.";
+                displayMessage(botMessage, "incoming");
+                
+                // Log successful response
+                console.log("API response:", data);
+            })
+            .catch(error => {
+                // Remove the loading message
+                if (loadingMsgElement) {
+                    chatBox.removeChild(loadingMsgElement);
+                }
+                
+                // Show error message
+                console.error("Error connecting to API:", error);
+                displayMessage("Error connecting to the API. Please try again.", "incoming");
+                
+                // As a fallback, try with a CORS proxy if the direct approach fails
+                tryWithCorsProxy(message);
+            });
+        }
+    }
+    
+    function tryWithCorsProxy(message) {
+        // Only use this as a fallback if direct approach fails
+        const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const backendUrl = 'https://geminibackend-357741312903.us-central1.run.app';
+        
+        console.log("Trying with CORS proxy...");
+        
+        fetch(corsProxyUrl + backendUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify({ message: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const botMessage = data.response || "Got response via proxy!";
+            displayMessage(botMessage, "incoming");
+            console.log("Proxy API response:", data);
+        })
+        .catch(error => {
+            console.error("Proxy approach also failed:", error);
         });
-    </script>
+    }
+
+    function displayMessage(message, type) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("chat-message", type);
+
+        if (type === "incoming") {
+            const emoji = document.createElement("div");
+            emoji.classList.add("robot-emoji");
+            emoji.innerText = "🤖";
+            messageElement.appendChild(emoji);
+        }
+
+        messageElement.innerText = message;
+        chatBox.appendChild(messageElement);
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
+    }
+
+    function showLoadingMessage() {
+        const loadingMessage = document.createElement("div");
+        loadingMessage.classList.add("chat-message", "incoming");
+        
+        const emoji = document.createElement("div");
+        emoji.classList.add("robot-emoji");
+        emoji.innerText = "🤖";
+        loadingMessage.appendChild(emoji);
+        
+        loadingMessage.innerText = "Thinking...";
+        chatBox.appendChild(loadingMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        
+        return loadingMessage;
+    }
+});
+</script>
 </body>
 </html>
