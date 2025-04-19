@@ -396,14 +396,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // Show loading indicator
             const loadingMsgElement = showLoadingMessage();
 
-            // Backend URL
-            const backendUrl = 'https://geminisudzius-357741312903.europe-central2.run.app';
+            // Backend URL (updated)
+            const backendUrl = 'https://chatbot-func-357741312903.europe-central2.run.app';
             
-            // Log the request to console for debugging
-            console.log("Sending request to:", backendUrl);
-            console.log("Request payload:", { message });
-
-            // Send message to backend with explicit no-cors mode
             fetch(backendUrl, {
                 method: 'POST',
                 headers: {
@@ -419,58 +414,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(data => {
-                // Remove the loading message
                 if (loadingMsgElement) {
                     chatBox.removeChild(loadingMsgElement);
                 }
-                
-                // Display the actual response
                 const botMessage = data.response || "Sorry, I couldn't process that.";
                 displayMessage(botMessage, "incoming");
-                
-                // Log successful response
-                console.log("API response:", data);
             })
             .catch(error => {
-                // Remove the loading message
                 if (loadingMsgElement) {
                     chatBox.removeChild(loadingMsgElement);
                 }
-                
-                // Show error message
                 console.error("Error connecting to API:", error);
-                displayMessage("Error connecting to the API. Please try again.", "incoming");
-                
-                // As a fallback, try with a CORS proxy if the direct approach fails
-                tryWithCorsProxy(message);
+                displayMessage("Klaida jungiantis prie API. Bandykite dar kartą.", "incoming");
             });
         }
-    }
-    
-    function tryWithCorsProxy(message) {
-        // Only use this as a fallback if direct approach fails
-        const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        const backendUrl = 'https://geminibackend-357741312903.us-central1.run.app';
-        
-        console.log("Trying with CORS proxy...");
-        
-        fetch(corsProxyUrl + backendUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-            },
-            body: JSON.stringify({ message: message })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const botMessage = data.response || "Got response via proxy!";
-            displayMessage(botMessage, "incoming");
-            console.log("Proxy API response:", data);
-        })
-        .catch(error => {
-            console.error("Proxy approach also failed:", error);
-        });
     }
 
     function displayMessage(message, type) {
@@ -498,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function() {
         emoji.innerText = "🤖";
         loadingMessage.appendChild(emoji);
         
-        loadingMessage.innerText = "Thinking...";
+        loadingMessage.innerText = "Galvoju...";
         chatBox.appendChild(loadingMessage);
         chatBox.scrollTop = chatBox.scrollHeight;
         
@@ -506,5 +463,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-</body>
 </html>
