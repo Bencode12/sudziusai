@@ -5,10 +5,9 @@ It was made only with that intention.
 
 | Status                                                               | Project                                                             |
 |------------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![In Progress](https://img.shields.io/badge/status-In_Progress-purple)| DB                             |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides, image and screenshot reading               |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Easy phoone access                                       |
-| ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Discord Server                                           |       
+| ![In Progress](https://img.shields.io/badge/status-In_Progress-purple)| Discord Server                                           |       
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Add User Settings                                        |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Multiple language select                                 |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)                | New UI                                                 |
@@ -16,3 +15,4 @@ It was made only with that intention.
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Eduka answers                                            |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Discussions                                              |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Tamo API                                                 |
+| ![DELAYED](https://img.shields.io/badge/status-In_Progress-red)| DB                             |
