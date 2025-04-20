@@ -311,13 +311,13 @@
 </head>
 <body>
     <!-- Loading Screen Container -->
-    <div class="loading-screen">
+    <div class="loading-screen" id="loading-screen">
         <div class="loader"></div>
         <p>Loading...</p>
     </div>
 
     <!-- Main Content -->
-    <div class="content" style="display:none;">
+    <div class="content" id="main-content" style="display:none;">
         <header class="navbar">
             <img src="https://zaliakalnis.kaunas.lm.lt/wp-content/uploads/2023/10/cropped-logo-192x192.png" 
                  alt="Logo" 
@@ -356,111 +356,122 @@
         </div>
     </div>
 
-    <!-- Modify only the fetch API part in your script section -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const loadingScreen = document.querySelector(".loading-screen");
-    const content = document.querySelector(".content");
-    const sendButton = document.getElementById("send-button");
-    const messageInput = document.getElementById("message-input");
-    const chatBox = document.getElementById("chat-box");
-    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const loadingScreen = document.getElementById("loading-screen");
+        const content = document.getElementById("main-content");
+        const sendButton = document.getElementById("send-button");
+        const messageInput = document.getElementById("message-input");
+        const chatBox = document.getElementById("chat-box");
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-    // Simulate loading process and then display the chat UI
-    setTimeout(() => {
-        loadingScreen.style.display = "none";
-        content.style.display = "block";
-    }, 3000); // Adjust the loading screen duration as needed
+        // Simulate loading process and then display the chat UI
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+            content.style.display = "block";
+            console.log("Loading screen hidden, main content shown");
+        }, 3000); // Show main content after 3 seconds
 
-    // Dark mode toggle
-    darkModeToggle.addEventListener("change", function() {
-        document.body.classList.toggle("dark-mode", darkModeToggle.checked);
-    });
+        // Dark mode toggle
+        darkModeToggle.addEventListener("change", function() {
+            document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+        });
 
-    // Send message when button clicked
-    sendButton.addEventListener("click", sendMessage);
-    
-    // Also listen for Enter key in input field
-    messageInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            sendMessage();
+        // Send message when button clicked
+        sendButton.addEventListener("click", sendMessage);
+        
+        // Also listen for Enter key in input field
+        messageInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message !== "") {
+                displayMessage(message, "outgoing");
+                messageInput.value = "";
+
+                // Show loading indicator
+                const loadingMsgElement = showLoadingMessage();
+
+                // Backend URL
+                const backendUrl = 'https://sudzinas.pw/proxy.php'; // Replace with your actual URL
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);  // Timeout after 5 seconds
+
+                fetch(backendUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message }),
+                    signal: controller.signal  // Abort the request if it takes too long
+                })
+                .then(response => {
+                    clearTimeout(timeoutId);  // Clear the timeout if the response is received in time
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (loadingMsgElement) {
+                        chatBox.removeChild(loadingMsgElement);
+                    }
+                    const botMessage = data.response || "Sorry, I couldn't process that.";
+                    displayMessage(botMessage, "incoming");
+                })
+                .catch(error => {
+                    if (loadingMsgElement) {
+                        chatBox.removeChild(loadingMsgElement);
+                    }
+                    if (error.name === 'AbortError') {
+                        console.error("Request timed out");
+                        displayMessage("Laiko limitas viršytas. Bandykite dar kartą.", "incoming");
+                    } else {
+                        console.error("Error connecting to API:", error);
+                        displayMessage("Klaida jungiantis prie API. Bandykite dar kartą.", "incoming");
+                    }
+                });
+            }
         }
-    });
 
-    function sendMessage() {
-        const message = messageInput.value.trim();
-        if (message !== "") {
-            displayMessage(message, "outgoing");
-            messageInput.value = "";
+        function displayMessage(message, type) {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("chat-message", type);
 
-            // Show loading indicator
-            const loadingMsgElement = showLoadingMessage();
+            if (type === "incoming") {
+                const emoji = document.createElement("div");
+                emoji.classList.add("robot-emoji");
+                emoji.innerText = "🤖";
+                messageElement.appendChild(emoji);
+            }
 
-            // Backend URL (updated)
-            const backendUrl = 'https://chatbot-func-357741312903.europe-central2.run.app';
+            messageElement.innerText = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
+        }
+
+        function showLoadingMessage() {
+            const loadingMessage = document.createElement("div");
+            loadingMessage.classList.add("chat-message", "incoming");
             
-            fetch(backendUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({ message: message })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (loadingMsgElement) {
-                    chatBox.removeChild(loadingMsgElement);
-                }
-                const botMessage = data.response || "Sorry, I couldn't process that.";
-                displayMessage(botMessage, "incoming");
-            })
-            .catch(error => {
-                if (loadingMsgElement) {
-                    chatBox.removeChild(loadingMsgElement);
-                }
-                console.error("Error connecting to API:", error);
-                displayMessage("Klaida jungiantis prie API. Bandykite dar kartą.", "incoming");
-            });
-        }
-    }
-
-    function displayMessage(message, type) {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add("chat-message", type);
-
-        if (type === "incoming") {
             const emoji = document.createElement("div");
             emoji.classList.add("robot-emoji");
             emoji.innerText = "🤖";
-            messageElement.appendChild(emoji);
+            loadingMessage.appendChild(emoji);
+            
+            loadingMessage.innerText = "Galvoju...";
+            chatBox.appendChild(loadingMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            return loadingMessage;
         }
-
-        messageElement.innerText = message;
-        chatBox.appendChild(messageElement);
-        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
-    }
-
-    function showLoadingMessage() {
-        const loadingMessage = document.createElement("div");
-        loadingMessage.classList.add("chat-message", "incoming");
-        
-        const emoji = document.createElement("div");
-        emoji.classList.add("robot-emoji");
-        emoji.innerText = "🤖";
-        loadingMessage.appendChild(emoji);
-        
-        loadingMessage.innerText = "Galvoju...";
-        chatBox.appendChild(loadingMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-        
-        return loadingMessage;
-    }
-});
-</script>
+    });
+    </script>
+</body>
 </html>
