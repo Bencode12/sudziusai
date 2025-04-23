@@ -5,6 +5,7 @@ It was made only with that intention.
 
 | Status                                                                | Project                                                             |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------|
+| ![ALMOST DONE](https://img.shields.io/badge/status-Almost-Done-puple) | DB                                                       |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides, image and screenshot reading               |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Tamo API                                                 |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Easy phone access                                        |      
@@ -12,4 +13,3 @@ It was made only with that intention.
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Multiple language select                                 |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| New UI                                                   |
 | ![Idea](https://img.shields.io/badge/status-Idea-blue)                | Eduka answers                                            |
-| ![ALMOST DONE](https://img.shields.io/badge/status-Near-red)           | DB                                                       |
