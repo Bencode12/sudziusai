@@ -5,7 +5,7 @@ It was made only with that intention.
 
 | Status                                                                | Project                                                             |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------|
-| ![ALMOST DONE](https://img.shields.io/badge/status-Almost-Done-puple) | DB                                                       |
+| ![ALMOST DONE](https://img.shields.io/badge/status-AlmostDone-puple) | DB                                                       |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides, image and screenshot reading               |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Tamo API                                                 |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Easy phone access                                        |      
