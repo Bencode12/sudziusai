@@ -7,4 +7,4 @@ It was made only with that intention.
 |-----------------------------------------------------------------------|----------------------------------------------------------------------|
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides, image and screenshot reading               |
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Tamo API                                                 |   
-| ![Idea](https://img.shields.io/badge/status-Ideainprogress-blue)                | Eduka answers                                            |
+| ![Idea](https://img.shields.io/badge/status-Idea in progress-blue)                | Eduka answers                                            |
