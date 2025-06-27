@@ -8,6 +8,7 @@ It was made only with that intention.
 | Status                                                                | Project                                                             |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------|
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Tamo API                                                 |  
+| ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Languages|  
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)| Link, slides creation/editing, image and photo ocr               | 
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)          | AI suggestions|
 | ![In Progress](https://img.shields.io/badge/status-In_Progress-yellow)         | Progress|
