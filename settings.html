@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SudžiusAI Settings</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">⬅️</span>Back to Dashboard</a>
+          <span class="h-8 w-8 text-blue-600">📖</span>
+          <h1 class="text-xl font-bold text-gray-900">SudžiusAI</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-8">
+      <!-- Profile Settings -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center space-x-2 text-lg font-semibold mb-2"><span>👤</span><span>Profile Settings</span></div>
+        <div class="text-gray-500 text-sm mb-4">Update your personal information and profile picture</div>
+        <form class="space-y-6">
+          <div class="flex items-center space-x-6">
+            <div class="h-24 w-24 bg-gray-200 rounded-full flex items-center justify-center text-lg font-bold">ST</div>
+            <div>
+              <label for="profileImage" class="block font-medium mb-2">Profile Photo</label>
+              <input id="profileImage" type="file" accept="image/*" class="block" />
+              <p class="text-sm text-gray-500 mt-2">JPG, PNG up to 5MB</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label for="username" class="block font-medium">Username</label>
+              <input id="username" name="username" class="w-full border rounded px-3 py-2" value="student123">
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="block font-medium">Email</label>
+              <input id="email" name="email" type="email" class="w-full border rounded px-3 py-2" value="student@example.com">
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label for="bio" class="block font-medium">Bio</label>
+            <textarea id="bio" name="bio" class="w-full border rounded px-3 py-2" rows="3">Passionate learner focused on STEM subjects</textarea>
+          </div>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Profile</button>
+        </form>
+      </div>
+      <!-- Tamo Credentials -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center space-x-2 text-lg font-semibold mb-2"><span>🔑</span><span>Tamo Credentials</span></div>
+        <div class="text-gray-500 text-sm mb-4">Connect your Tamo account to sync grades automatically</div>
+        <form class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label for="tamoUsername" class="block font-medium">Tamo Username</label>
+              <input id="tamoUsername" name="tamoUsername" class="w-full border rounded px-3 py-2" placeholder="Enter your Tamo username">
+            </div>
+            <div class="space-y-2">
+              <label for="tamoPassword" class="block font-medium">Tamo Password</label>
+              <input id="tamoPassword" name="tamoPassword" type="password" class="w-full border rounded px-3 py-2" placeholder="Enter your Tamo password">
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 p-4 bg-blue-50 rounded-lg">
+            <div class="text-sm text-blue-800">
+              <p class="font-medium">Secure Connection</p>
+              <p>Your credentials are encrypted and stored securely. We only use them to fetch your grades.</p>
+            </div>
+          </div>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save Credentials</button>
+        </form>
+      </div>
+      <!-- Notification Settings -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center space-x-2 text-lg font-semibold mb-2"><span>🔔</span><span>Notifications</span></div>
+        <div class="text-gray-500 text-sm mb-4">Manage your notification preferences</div>
+        <div class="space-y-6">
+          <div class="flex items-center justify-between">
+            <div class="space-y-0.5">
+              <span class="block font-medium">Grade Updates</span>
+              <p class="text-sm text-gray-500">Get notified when your grades are updated</p>
+            </div>
+            <input type="checkbox" checked class="h-5 w-5 text-blue-600 rounded">
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="space-y-0.5">
+              <span class="block font-medium">AI Recommendations</span>
+              <p class="text-sm text-gray-500">Receive personalized learning suggestions</p>
+            </div>
+            <input type="checkbox" checked class="h-5 w-5 text-blue-600 rounded">
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="space-y-0.5">
+              <span class="block font-medium">Weekly Reports</span>
+              <p class="text-sm text-gray-500">Get weekly progress summaries</p>
+            </div>
+            <input type="checkbox" class="h-5 w-5 text-blue-600 rounded">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
