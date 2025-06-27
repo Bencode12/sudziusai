@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SudžiusAI - AI Tutoring</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50">
+  <!-- Header (reuse dashboard nav style) -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <a href="index.html" class="flex items-center space-x-3">
+            <span class="h-8 w-8 text-blue-600">📖</span>
+            <h1 class="text-xl font-bold text-gray-900">SudžiusAI</h1>
+          </a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative inline-block w-48">
+            <select id="languageSelector" class="block appearance-none w-full bg-white border border-gray-300 hover:border-blue-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+              <option value="en">🇺🇸 English</option>
+              <option value="lt">🇱🇹 Lietuvių</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 11.586 8.707 10.293a1 1 0 00-1.414 1.414l2 2z"/></svg>
+            </div>
+          </div>
+          <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🏠</span><span id="navDashboard">Dashboard</span></a>
+          <a href="leaderboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🏆</span><span id="navLeaderboard">Leaderboard</span></a>
+          <a href="settings.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">⚙️</span><span id="navSettings">Settings</span></a>
+          <a href="profile.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">👤</span><span id="navProfile">Profile</span></a>
+          <a href="#" id="logoutBtn" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🚪</span><span id="navLogout">Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2" id="aiTutoringTitle">Start AI Tutoring</h2>
+      <p class="text-gray-600" id="aiTutoringDesc">Choose a subject to begin your personalized AI-powered session.</p>
+    </div>
+    <!-- Sidebar toggle button -->
+    <button id="sidebarToggle" class="md:hidden mb-4 bg-gray-200 px-4 py-2 rounded flex items-center"><span class="mr-2">📚</span><span id="sidebarToggleText">Subjects</span></button>
+    <div class="flex">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="fixed md:static z-30 top-0 left-0 h-full w-64 bg-white shadow-lg md:shadow-none border-r md:border-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out md:block hidden md:flex flex-col">
+        <div class="flex items-center justify-between px-6 py-4 border-b">
+          <span class="font-bold text-lg">Subjects</span>
+          <button id="sidebarClose" class="md:hidden text-gray-500">✖️</button>
+        </div>
+        <nav class="flex-1 px-4 py-4 space-y-2">
+          <button class="w-full text-left px-4 py-2 rounded hover:bg-blue-100 subject-btn" data-subject="math"><span class="mr-2">➗</span><span id="sidebarMath">Mathematics</span></button>
+          <button class="w-full text-left px-4 py-2 rounded hover:bg-green-100 subject-btn" data-subject="physics"><span class="mr-2">🧲</span><span id="sidebarPhysics">Physics</span></button>
+          <button class="w-full text-left px-4 py-2 rounded hover:bg-yellow-100 subject-btn" data-subject="chemistry"><span class="mr-2">⚗️</span><span id="sidebarChemistry">Chemistry</span></button>
+        </nav>
+      </aside>
+      <!-- Main tutoring area -->
+      <div class="flex-1 md:ml-4 w-full">
+        <div id="tutoringSession" class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white rounded-lg shadow p-4 md:p-6 hidden">
+          <!-- Left: Manim video + worksheet -->
+          <div class="col-span-1 flex flex-col space-y-4">
+            <div class="bg-gray-100 rounded p-4 flex-1 flex flex-col items-center justify-center min-h-[180px]">
+              <span class="text-3xl mb-2">🎬</span>
+              <div id="manimVideo" class="text-gray-700 text-center">Manim Video Placeholder</div>
+              <button id="geminiBtn" class="mt-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded font-semibold flex items-center justify-center"><span class="mr-2">🔮</span>Gemini</button>
+            </div>
+            <div class="bg-gray-50 rounded p-4 flex-1">
+              <h4 class="font-semibold mb-2" id="worksheetTitle">Worksheet</h4>
+              <textarea id="worksheetArea" class="w-full border rounded px-3 py-2" rows="5" placeholder="Worksheet area..."></textarea>
+            </div>
+          </div>
+          <!-- Right: Chatbox -->
+          <div class="col-span-2 flex flex-col h-full">
+            <div class="flex items-center mb-2">
+              <span class="text-2xl mr-2">🤖</span>
+              <h3 class="text-xl font-bold" id="sessionTitle">AI Tutoring Session</h3>
+              <span id="sessionSubject" class="ml-4 text-blue-600 font-semibold"></span>
+            </div>
+            <div class="flex-1 flex flex-col">
+              <div id="chatHistory" class="flex-1 bg-gray-100 rounded p-3 mb-2 overflow-y-auto max-h-64 text-gray-800 whitespace-pre-line"></div>
+              <div class="flex items-center space-x-2">
+                <textarea id="userQuestion" class="flex-1 border rounded px-3 py-2" rows="2" placeholder="Type your question or topic..."></textarea>
+                <button id="askBtn" class="bg-blue-600 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition">Ask AI</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+// Translation: add sidebar subject labels and worksheet title
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  const t = translations[lang] || translations['en'];
+  document.getElementById('navDashboard').textContent = t.nav.dashboard;
+  document.getElementById('navLeaderboard').textContent = t.nav.leaderboard;
+  document.getElementById('navSettings').textContent = t.nav.settings;
+  document.getElementById('navProfile').textContent = t.nav.profile;
+  document.getElementById('navLogout').textContent = t.nav.logout;
+  document.getElementById('aiTutoringTitle').textContent = t.aiTutoringTitle;
+  document.getElementById('aiTutoringDesc').textContent = t.aiTutoringDesc;
+  document.getElementById('sidebarMath').textContent = t.subjectMath;
+  document.getElementById('sidebarPhysics').textContent = t.subjectPhysics;
+  document.getElementById('sidebarChemistry').textContent = t.subjectChemistry;
+  document.getElementById('worksheetTitle').textContent = t.worksheetTitle || 'Worksheet';
+  document.getElementById('sidebarToggleText').textContent = t.subjects || 'Subjects';
+}
+// Sidebar toggle logic
+const sidebar = document.getElementById('sidebar');
+document.getElementById('sidebarToggle').addEventListener('click', () => {
+  sidebar.classList.remove('hidden');
+  sidebar.classList.remove('-translate-x-full');
+});
+document.getElementById('sidebarClose').addEventListener('click', () => {
+  sidebar.classList.add('hidden');
+  sidebar.classList.add('-translate-x-full');
+});
+// Subject selection logic (update for sidebar and grid buttons)
+const subjectBtns = document.querySelectorAll('.subject-btn');
+const tutoringSession = document.getElementById('tutoringSession');
+const sessionSubject = document.getElementById('sessionSubject');
+let selectedSubject = null;
+subjectBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    selectedSubject = btn.getAttribute('data-subject');
+    tutoringSession.classList.remove('hidden');
+    sessionSubject.textContent = btn.querySelector('span:last-child').textContent;
+    document.getElementById('chatHistory').textContent = '';
+    document.getElementById('userQuestion').value = '';
+    // Optionally close sidebar on mobile
+    sidebar.classList.add('hidden');
+    sidebar.classList.add('-translate-x-full');
+  });
+});
+// Chatbox logic
+const chatHistory = document.getElementById('chatHistory');
+document.getElementById('askBtn').addEventListener('click', function() {
+  const question = document.getElementById('userQuestion').value.trim();
+  if (!question) return;
+  chatHistory.textContent += `\nYou: ${question}`;
+  document.getElementById('userQuestion').value = '';
+  chatHistory.textContent += `\nAI (${sessionSubject.textContent}): Thinking...`;
+  // Placeholder: Simulate AI response
+  setTimeout(() => {
+    chatHistory.textContent = chatHistory.textContent.replace(/Thinking\.\.\.$/, `This is a placeholder answer for: "${question}"`);
+  }, 1200);
+});
+// Gemini button placeholder
+const geminiBtn = document.getElementById('geminiBtn');
+geminiBtn.addEventListener('click', function() {
+  alert('Gemini feature coming soon!');
+});
+// Language selector logic (update all UI)
+const translations = {
+  en: {
+    nav: {dashboard: "Dashboard", leaderboard: "Leaderboard", settings: "Settings", profile: "Profile", logout: "Logout"},
+    aiTutoringTitle: "Start AI Tutoring",
+    aiTutoringDesc: "Choose a subject to begin your personalized AI-powered session.",
+    subjectMath: "Mathematics",
+    subjectPhysics: "Physics",
+    subjectChemistry: "Chemistry",
+    sessionTitle: "AI Tutoring Chat"
+  },
+  lt: {
+    nav: {dashboard: "Pradžia", leaderboard: "Lyderių lentelė", settings: "Nustatymai", profile: "Profilis", logout: "Atsijungti"},
+    aiTutoringTitle: "Pradėti AI mokymą",
+    aiTutoringDesc: "Pasirinkite dalyką ir pradėkite personalizuotą AI sesiją.",
+    subjectMath: "Matematika",
+    subjectPhysics: "Fizika",
+    subjectChemistry: "Chemija",
+    sessionTitle: "AI pokalbis"
+  },
+  es: {
+    nav: {dashboard: "Tablero", leaderboard: "Tabla de clasificación", settings: "Configuraciones", profile: "Perfil", logout: "Cerrar sesión"},
+    aiTutoringTitle: "Iniciar tutoría de IA",
+    aiTutoringDesc: "Elige una materia para comenzar tu sesión personalizada de IA.",
+    subjectMath: "Matemáticas",
+    subjectPhysics: "Física",
+    subjectChemistry: "Química",
+    sessionTitle: "Chat de tutoría IA"
+  },
+  fr: {
+    nav: {dashboard: "Tableau de bord", leaderboard: "Classement", settings: "Paramètres", profile: "Profil", logout: "Se déconnecter"},
+    aiTutoringTitle: "Démarrer le tutorat IA",
+    aiTutoringDesc: "Choisissez une matière pour commencer votre session IA personnalisée.",
+    subjectMath: "Mathématiques",
+    subjectPhysics: "Physique",
+    subjectChemistry: "Chimie",
+    sessionTitle: "Chat de tutorat IA"
+  },
+  de: {
+    nav: {dashboard: "Armaturenbrett", leaderboard: "Rangliste", settings: "Einstellungen", profile: "Profil", logout: "Abmelden"},
+    aiTutoringTitle: "KI-Tutoring starten",
+    aiTutoringDesc: "Wählen Sie ein Fach, um Ihre personalisierte KI-Sitzung zu beginnen.",
+    subjectMath: "Mathematik",
+    subjectPhysics: "Physik",
+    subjectChemistry: "Chemie",
+    sessionTitle: "KI-Tutoring-Chat"
+  },
+  ru: {
+    nav: {dashboard: "Панель", leaderboard: "Таблица лидеров", settings: "Настройки", profile: "Профиль", logout: "Выйти"},
+    aiTutoringTitle: "Начать обучение с ИИ",
+    aiTutoringDesc: "Выберите предмет для персонализированной сессии с ИИ.",
+    subjectMath: "Математика",
+    subjectPhysics: "Физика",
+    subjectChemistry: "Химия",
+    sessionTitle: "Чат обучения с ИИ"
+  }
+};
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  const t = translations[lang] || translations['en'];
+  document.getElementById('navDashboard').textContent = t.nav.dashboard;
+  document.getElementById('navLeaderboard').textContent = t.nav.leaderboard;
+  document.getElementById('navSettings').textContent = t.nav.settings;
+  document.getElementById('navProfile').textContent = t.nav.profile;
+  document.getElementById('navLogout').textContent = t.nav.logout;
+  document.getElementById('aiTutoringTitle').textContent = t.aiTutoringTitle;
+  document.getElementById('aiTutoringDesc').textContent = t.aiTutoringDesc;
+  document.getElementById('sidebarMath').textContent = t.subjectMath;
+  document.getElementById('sidebarPhysics').textContent = t.subjectPhysics;
+  document.getElementById('sidebarChemistry').textContent = t.subjectChemistry;
+  document.getElementById('worksheetTitle').textContent = t.worksheetTitle || 'Worksheet';
+  document.getElementById('sidebarToggleText').textContent = t.subjects || 'Subjects';
+}
+document.getElementById('languageSelector').addEventListener('change', function() {
+  setLanguage(this.value);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  const lang = localStorage.getItem('lang') || 'en';
+  document.getElementById('languageSelector').value = lang;
+  setLanguage(lang);
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  });
+});
+  </script>
+</body>
+</html>

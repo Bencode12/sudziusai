@@ -9,16 +9,28 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
   <!-- Header -->
-  <header class="bg-white/80 backdrop-blur-sm shadow-sm border-b">
+  <header class="bg-white shadow-sm border-b">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center space-x-3">
-          <svg class="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4m0 0L3 9m9-5l9 5"/></svg>
-          <span class="text-xl font-bold text-gray-900">SudžiusAI</span>
+          <span class="h-8 w-8 text-blue-600">📖</span>
+          <h1 class="text-xl font-bold text-gray-900">SudžiusAI</h1>
         </div>
         <div class="flex items-center space-x-4">
-          <a href="login.html" class="text-gray-700 hover:text-blue-600 font-semibold">Sign In</a>
-          <a href="signup.html" class="bg-blue-600 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition">Get Started</a>
+          <div class="relative inline-block w-48">
+            <select id="languageSelector" class="block appearance-none w-full bg-white border border-gray-300 hover:border-blue-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+              <option value="en">🇺🇸 English</option>
+              <option value="lt">🇱🇹 Lietuvių</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 11.586 8.707 10.293a1 1 0 00-1.414 1.414l2 2z"/></svg>
+            </div>
+          </div>
+          <a href="login.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🚪</span>Login</a>
         </div>
       </div>
     </div>
@@ -42,7 +54,7 @@
           <a href="signup.html" class="w-full sm:w-auto">
             <button class="w-full sm:w-auto text-lg px-8 py-3 bg-blue-600 text-white rounded font-semibold hover:bg-blue-700 transition">Start Learning Now</button>
           </a>
-          <a href="leaderboard.php" class="w-full sm:w-auto">
+          <a href="leaderboard.html" class="w-full sm:w-auto">
             <button class="w-full sm:w-auto text-lg px-8 py-3 border border-blue-600 text-blue-600 rounded font-semibold hover:bg-blue-50 transition">View Leaderboard</button>
           </a>
         </div>
@@ -263,9 +275,6 @@
           <a href="signup.html" class="w-full sm:w-auto">
             <button class="w-full sm:w-auto text-lg px-8 py-3 bg-white text-blue-600 rounded font-semibold hover:bg-blue-50 transition">Get Started Free</button>
           </a>
-          <a href="dashboard.html" class="w-full sm:w-auto">
-            <button class="w-full sm:w-auto text-lg px-8 py-3 border border-white text-white rounded font-semibold hover:bg-white hover:text-blue-600 transition">View Demo</button>
-          </a>
         </div>
       </div>
     </section>
@@ -278,34 +287,25 @@
         <div class="col-span-1 md:col-span-2">
           <div class="flex items-center space-x-3 mb-4">
             <svg class="h-8 w-8 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4m0 0L3 9m9-5l9 5"/></svg>
-            <span class="text-2xl font-bold">LearnAI</span>
+            <span class="text-2xl font-bold">SudžiusAI</span>
           </div>
           <p class="text-gray-400 max-w-md">
             Empowering students worldwide with intelligent learning solutions, 
             AI-powered tutoring, and comprehensive educational tools.
           </p>
         </div>
-        <div>
-          <h4 class="font-semibold mb-4">Features</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="dashboard.html" class="hover:text-white transition-colors">Dashboard</a></li>
-            <li><a href="leaderboard.php" class="hover:text-white transition-colors">Leaderboard</a></li>
-            <li>AI Tutoring</li>
-            <li>OCR Technology</li>
-          </ul>
-        </div>
+        <div></div>
         <div>
           <h4 class="font-semibold mb-4">Support</h4>
           <ul class="space-y-2 text-gray-400">
-            <li><a href="settings.html" class="hover:text-white transition-colors">Settings</a></li>
-            <li>Help Center</li>
-            <li>Contact Us</li>
-            <li>Privacy Policy</li>
+            <li><a href="help-center.html" class="hover:text-white transition-colors">Help Center</a></li>
+            <li><a href="contact-us.html" class="hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
       <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>© 2024 LearnAI. Revolutionizing education with artificial intelligence.</p>
+        <p>© 2024 SudžiusAI. Revolutionizing education with artificial intelligence.</p>
       </div>
     </div>
   </footer>

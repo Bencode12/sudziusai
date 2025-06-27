@@ -11,7 +11,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex items-center space-x-3">
-          <a href="dashboard.html" class="flex items-center space-x-3">
+          <a href="index.html" class="flex items-center space-x-3">
             <span class="h-8 w-8 text-blue-600">📖</span>
             <h1 class="text-xl font-bold text-gray-900">SudžiusAI</h1>
           </a>
@@ -30,7 +30,11 @@
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 11.586 8.707 10.293a1 1 0 00-1.414 1.414l2 2z"/></svg>
             </div>
           </div>
-          <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded font-semibold">Dashboard</a>
+          <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🏠</span><span id="navDashboard">Dashboard</span></a>
+          <a href="leaderboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center" id="leaderboardLink"><span class="mr-2">🏆</span><span id="navLeaderboard">Leaderboard</span></a>
+          <a href="settings.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">⚙️</span><span id="navSettings">Settings</span></a>
+          <a href="profile.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">👤</span><span id="navProfile">Profile</span></a>
+          <a href="#" id="logoutBtn" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🚪</span><span id="navLogout">Logout</span></a>
         </div>
       </div>
     </div>
@@ -78,45 +82,134 @@
       </table>
     </div>
     <script>
-      // Language selector (UI only)
-      document.getElementById('languageSelector').addEventListener('change', function() {
-        alert('Language switching is UI only for now.');
-      });
-      // Fetch leaderboard data (static for now)
-      function getRankIcon(rank) {
-        if (rank === 1) return '👑';
-        if (rank === 2) return '🥈';
-        if (rank === 3) return '🥉';
-        return `#${rank}`;
-      }
-      function getChangeIcon(change) {
-        if (change === 'up') return '⬆️';
-        if (change === 'down') return '⬇️';
-        return '-';
-      }
-      fetch('leaderboard.php')
-        .then(r => r.json())
-        .then(data => {
-          const tbody = document.getElementById('leaderboardBody');
-          if (data.success) {
-            tbody.innerHTML = data.leaderboard.map((u, i) => `
-              <tr>
-                <td class="px-4 py-2">${getRankIcon(i+1)}</td>
-                <td class="px-4 py-2 font-semibold flex items-center gap-2">
-                  <span class="inline-block w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold">${u.avatar || u.username.charAt(0).toUpperCase()}</span>
-                  ${u.username}
-                </td>
-                <td class="px-4 py-2">${u.score}</td>
-                <td class="px-4 py-2">${u.streak || '-'}</td>
-                <td class="px-4 py-2">${u.level || '-'}</td>
-                <td class="px-4 py-2">${getChangeIcon(u.change)}</td>
-              </tr>
-            `).join('');
-          } else {
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4">Failed to load leaderboard.</td></tr>';
-          }
-        });
-    </script>
+const translations = {
+  en: {
+    nav: {dashboard: "Dashboard", leaderboard: "Leaderboard", settings: "Settings", profile: "Profile", logout: "Logout"},
+    leaderboard: "Leaderboard",
+    see: "See how you stack up against other learners",
+    today: "Today",
+    this_week: "This Week",
+    this_month: "This Month",
+    all_time: "All Time",
+    all_subjects: "All Subjects",
+    math: "Mathematics",
+    science: "Science",
+    english: "English",
+    history: "History"
+  },
+  lt: {
+    nav: {dashboard: "Pradžia", leaderboard: "Lyderių lentelė", settings: "Nustatymai", profile: "Profilis", logout: "Atsijungti"},
+    leaderboard: "Lyderių lentelė",
+    see: "Pamatyk, kaip sekasi kitiems mokiniams",
+    today: "Šiandien",
+    this_week: "Šią savaitę",
+    this_month: "Šį mėnesį",
+    all_time: "Visą laiką",
+    all_subjects: "Visos temos",
+    math: "Matematika",
+    science: "Mokslas",
+    english: "Anglų kalba",
+    history: "Istorija"
+  },
+  es: {
+    nav: {dashboard: "Tablero", leaderboard: "Tabla de clasificación", settings: "Configuraciones", profile: "Perfil", logout: "Cerrar sesión"},
+    leaderboard: "Tabla de Clasificación",
+    see: "Ve cómo te comparas con otros aprendices",
+    today: "Hoy",
+    this_week: "Esta semana",
+    this_month: "Este mes",
+    all_time: "Todo el tiempo",
+    all_subjects: "Todas las materias",
+    math: "Matemáticas",
+    science: "Ciencias",
+    english: "Inglés",
+    history: "Historia"
+  },
+  fr: {
+    nav: {dashboard: "Tableau de bord", leaderboard: "Classement", settings: "Paramètres", profile: "Profil", logout: "Se déconnecter"},
+    leaderboard: "Classement",
+    see: "Voyez comment vous vous situez par rapport aux autres apprenants",
+    today: "Aujourd'hui",
+    this_week: "Cette semaine",
+    this_month: "Ce mois-ci",
+    all_time: "Tout le temps",
+    all_subjects: "Toutes les matières",
+    math: "Mathématiques",
+    science: "Sciences",
+    english: "Anglais",
+    history: "Histoire"
+  },
+  de: {
+    nav: {dashboard: "Armaturenbrett", leaderboard: "Rangliste", settings: "Einstellungen", profile: "Profil", logout: "Abmelden"},
+    leaderboard: "Rangliste",
+    see: "Sehen Sie, wie Sie im Vergleich zu anderen Lernenden abschneiden",
+    today: "Heute",
+    this_week: "Diese Woche",
+    this_month: "Diesen Monat",
+    all_time: "Alle Zeiten",
+    all_subjects: "Alle Fächer",
+    math: "Mathematik",
+    science: "Wissenschaft",
+    english: "Englisch",
+    history: "Geschichte"
+  },
+  ru: {
+    nav: {dashboard: "Панель", leaderboard: "Таблица лидеров", settings: "Настройки", profile: "Профиль", logout: "Выйти"},
+    leaderboard: "Таблица лидеров",
+    see: "Смотрите, как вы смотритесь по сравнению с другими учениками",
+    today: "Сегодня",
+    this_week: "На этой неделе",
+    this_month: "В этом месяце",
+    all_time: "За все время",
+    all_subjects: "Все предметы",
+    math: "Математика",
+    science: "Наука",
+    english: "Английский",
+    history: "История"
+  }
+};
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  const t = translations[lang] || translations['en'];
+  document.getElementById('navDashboard').textContent = t.nav.dashboard;
+  document.getElementById('navLeaderboard').textContent = t.nav.leaderboard;
+  document.getElementById('navSettings').textContent = t.nav.settings;
+  document.getElementById('navProfile').textContent = t.nav.profile;
+  document.getElementById('navLogout').textContent = t.nav.logout;
+  document.querySelector('h2.text-3xl').textContent = t.leaderboard;
+  document.querySelector('p.text-gray-600').textContent = t.see;
+  document.getElementById('periodFilter').querySelector('option[value="day"]').textContent = t.today;
+  document.getElementById('periodFilter').querySelector('option[value="week"]').textContent = t.this_week;
+  document.getElementById('periodFilter').querySelector('option[value="month"]').textContent = t.this_month;
+  document.getElementById('periodFilter').querySelector('option[value="all"]').textContent = t.all_time;
+  document.getElementById('subjectFilter').querySelector('option[value="all"]').textContent = t.all_subjects;
+  document.getElementById('subjectFilter').querySelector('option[value="math"]').textContent = t.math;
+  document.getElementById('subjectFilter').querySelector('option[value="science"]').textContent = t.science;
+  document.getElementById('subjectFilter').querySelector('option[value="english"]').textContent = t.english;
+  document.getElementById('subjectFilter').querySelector('option[value="history"]').textContent = t.history;
+}
+document.getElementById('languageSelector').addEventListener('change', function() {
+  setLanguage(this.value);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  const lang = localStorage.getItem('lang') || 'en';
+  document.getElementById('languageSelector').value = lang;
+  setLanguage(lang);
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  });
+  // Leaderboard link refresh if already on leaderboard
+  const leaderboardLink = document.getElementById('leaderboardLink');
+  if (window.location.pathname.endsWith('leaderboard.html') && leaderboardLink) {
+    leaderboardLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.reload();
+    });
+  }
+});
+</script>
   </main>
 </body>
 </html>

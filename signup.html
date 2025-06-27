@@ -6,37 +6,170 @@
   <title>SudžiusAI Signup</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-  <div class="bg-white rounded-lg shadow w-full max-w-md">
-    <div class="text-center p-6">
-      <div class="flex justify-center mb-4">
-        <span class="h-12 w-12 text-blue-600 text-3xl">📖</span>
-      </div>
-      <div class="text-2xl font-bold mb-1">Create Account</div>
-      <div class="text-gray-500 mb-4">Start your personalized learning journey</div>
-      <form class="space-y-4">
-        <div class="space-y-2 text-left">
-          <label for="username" class="block font-medium">Username</label>
-          <input id="username" name="username" placeholder="Choose a username" class="w-full border rounded px-3 py-2" required>
-        </div>
-        <div class="space-y-2 text-left">
-          <label for="email" class="block font-medium">Email</label>
-          <input id="email" name="email" type="email" placeholder="Enter your email" class="w-full border rounded px-3 py-2" required>
-        </div>
-        <div class="space-y-2 text-left">
-          <label for="password" class="block font-medium">Password</label>
-          <input id="password" name="password" type="password" placeholder="Create a password" class="w-full border rounded px-3 py-2" required>
-        </div>
-        <div class="space-y-2 text-left">
-          <label for="confirmPassword" class="block font-medium">Confirm Password</label>
-          <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm your password" class="w-full border rounded px-3 py-2" required>
-        </div>
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold">Create Account</button>
-      </form>
-      <div class="mt-4 text-center text-sm">
-        Already have an account? <a href="login.html" class="text-blue-600 hover:underline">Sign in</a>
-      </div>
-    </div>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+  <!-- Language Selector in top-right corner -->
+  <div class="absolute top-4 right-4 z-50">
+    <select id="languageSelector" class="block appearance-none w-full bg-white border border-gray-300 hover:border-blue-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+      <option value="en">🇺🇸 English</option>
+      <option value="lt">🇱🇹 Lietuvių</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="ru">🇷🇺 Русский</option>
+    </select>
   </div>
+  <div class="flex items-center justify-center min-h-screen">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md mx-auto" id="signup-form" enctype="multipart/form-data">
+      <div class="flex flex-col items-center mb-6">
+        <span class="text-3xl mb-2">📖</span>
+        <h2 class="text-2xl font-bold mb-1 text-center">Create Account</h2>
+        <p class="text-gray-500 text-center text-sm">Start your personalized learning journey</p>
+      </div>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text" placeholder="Choose a username" required>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" placeholder="Enter your email" required>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 mb-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" name="password" type="password" placeholder="Create a password" required>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmPassword">Confirm Password</label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 mb-6 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm your password" required>
+      <button class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition" type="submit">Create Account</button>
+      <div id="signup-error" class="text-red-600 text-sm mt-2 hidden"></div>
+      <p class="mt-4 text-center text-gray-600 text-sm">Already have an account? <a href="login.html" class="text-blue-600 hover:underline">Sign in</a></p>
+    </form>
+  </div>
+  <script>
+const translations = {
+  en: {
+    create: "Create Account",
+    start: "Start your personalized learning journey",
+    username: "Username",
+    email: "Email",
+    password: "Password",
+    confirm: "Confirm Password",
+    createBtn: "Create Account",
+    already: "Already have an account? ",
+    signin: "Sign in",
+    errorMatch: "Passwords do not match.",
+    errorFail: "Registration failed."
+  },
+  lt: {
+    create: "Sukurti paskyrą",
+    start: "Pradėkite savo asmeninę mokymosi kelionę",
+    username: "Vartotojo vardas",
+    email: "El. paštas",
+    password: "Slaptažodis",
+    confirm: "Patvirtinkite slaptažodį",
+    createBtn: "Sukurti paskyrą",
+    already: "Jau turite paskyrą? ",
+    signin: "Prisijungti",
+    errorMatch: "Slaptažodžiai nesutampa.",
+    errorFail: "Registracija nepavyko."
+  },
+  es: {
+    create: "Crear cuenta",
+    start: "Comienza tu viaje de aprendizaje personalizado",
+    username: "Nombre de usuario",
+    email: "Correo electrónico",
+    password: "Contraseña",
+    confirm: "Confirmar contraseña",
+    createBtn: "Crear cuenta",
+    already: "¿Ya tienes una cuenta? ",
+    signin: "Iniciar sesión",
+    errorMatch: "Las contraseñas no coinciden.",
+    errorFail: "Registro fallido."
+  },
+  fr: {
+    create: "Créer un compte",
+    start: "Commencez votre parcours d'apprentissage personnalisé",
+    username: "Nom d'utilisateur",
+    email: "E-mail",
+    password: "Mot de passe",
+    confirm: "Confirmez le mot de passe",
+    createBtn: "Créer un compte",
+    already: "Vous avez déjà un compte? ",
+    signin: "Se connecter",
+    errorMatch: "Les mots de passe ne correspondent pas.",
+    errorFail: "Échec de l'inscription."
+  },
+  de: {
+    create: "Konto erstellen",
+    start: "Beginnen Sie Ihre persönliche Lernreise",
+    username: "Benutzername",
+    email: "E-Mail",
+    password: "Passwort",
+    confirm: "Passwort bestätigen",
+    createBtn: "Konto erstellen",
+    already: "Sie haben bereits ein Konto? ",
+    signin: "Anmelden",
+    errorMatch: "Passwörter stimmen nicht überein.",
+    errorFail: "Registrierung fehlgeschlagen."
+  },
+  ru: {
+    create: "Создать аккаунт",
+    start: "Начните свой персонализированный путь обучения",
+    username: "Имя пользователя",
+    email: "Электронная почта",
+    password: "Пароль",
+    confirm: "Подтвердите пароль",
+    createBtn: "Создать аккаунт",
+    already: "Уже есть аккаунт? ",
+    signin: "Войти",
+    errorMatch: "Пароли не совпадают.",
+    errorFail: "Регистрация не удалась."
+  }
+};
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  const t = translations[lang] || translations['en'];
+  document.querySelector('h2.text-2xl').textContent = t.create;
+  document.querySelector('p.text-gray-500').textContent = t.start;
+  document.querySelector('label[for="username"]').textContent = t.username;
+  document.querySelector('label[for="email"]').textContent = t.email;
+  document.querySelector('label[for="password"]').textContent = t.password;
+  document.querySelector('label[for="confirmPassword"]').textContent = t.confirm;
+  document.querySelector('button[type="submit"]').textContent = t.createBtn;
+  document.querySelector('p.mt-4').innerHTML = t.already + `<a href="login.html" class="text-blue-600 hover:underline">${t.signin}</a>`;
+}
+document.getElementById('languageSelector').addEventListener('change', function() {
+  setLanguage(this.value);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  const lang = localStorage.getItem('lang') || 'en';
+  document.getElementById('languageSelector').value = lang;
+  setLanguage(lang);
+});
+document.getElementById('signup-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const errorDiv = document.getElementById('signup-error');
+  errorDiv.classList.add('hidden');
+  errorDiv.textContent = '';
+  const lang = localStorage.getItem('lang') || 'en';
+  const t = translations[lang] || translations['en'];
+  if (formData.get('password') !== formData.get('confirmPassword')) {
+    errorDiv.textContent = t.errorMatch;
+    errorDiv.classList.remove('hidden');
+    return;
+  }
+  try {
+    const res = await fetch('register.php', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = data.redirect || 'dashboard.html';
+    } else {
+      errorDiv.textContent = data.message || t.errorFail;
+      errorDiv.classList.remove('hidden');
+    }
+  } catch (err) {
+    errorDiv.textContent = t.errorFail;
+    errorDiv.classList.remove('hidden');
+  }
+});
+</script>
 </body>
 </html>
