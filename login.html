@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SudžiusAI Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+  <div class="bg-white rounded-lg shadow w-full max-w-md">
+    <div class="text-center p-6">
+      <div class="flex justify-center mb-4">
+        <span class="h-12 w-12 text-blue-600 text-3xl">📖</span>
+      </div>
+      <div class="text-2xl font-bold mb-1">Welcome Back</div>
+      <div class="text-gray-500 mb-4">Sign in to your learning account</div>
+      <form id="login-form" class="space-y-4">
+        <div class="space-y-2 text-left">
+          <label for="email" class="block font-medium">Email</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email" class="w-full border rounded px-3 py-2" required>
+        </div>
+        <div class="space-y-2 text-left">
+          <label for="password" class="block font-medium">Password</label>
+          <input id="password" name="password" type="password" placeholder="Enter your password" class="w-full border rounded px-3 py-2" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-semibold">Sign In</button>
+        <div id="login-error" class="text-red-600 text-sm mt-2 hidden"></div>
+      </form>
+      <div class="mt-4 text-center text-sm">
+        Don't have an account? <a href="signup.html" class="text-blue-600 hover:underline">Sign up</a>
+      </div>
+    </div>
+  </div>
+  <script>
+document.getElementById('login-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const errorDiv = document.getElementById('login-error');
+  errorDiv.classList.add('hidden');
+  errorDiv.textContent = '';
+  const res = await fetch('login.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+  const data = await res.json();
+  if (data.success) {
+    localStorage.setItem('auth_token', data.data.token);
+    window.location.href = 'dashboard.html';
+  } else {
+    errorDiv.textContent = data.message || 'Login failed.';
+    errorDiv.classList.remove('hidden');
+  }
+});
+</script>
+</body>
+</html>

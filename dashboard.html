@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SudžiusAI Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <a href="index.html" class="flex items-center space-x-3">
+            <span class="h-8 w-8 text-blue-600">📖</span>
+            <h1 class="text-xl font-bold text-gray-900">SudžiusAI</h1>
+          </a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative inline-block w-48">
+            <select id="languageSelector" class="block appearance-none w-full bg-white border border-gray-300 hover:border-blue-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+              <option value="en">🇺🇸 English</option>
+              <option value="lt">🇱🇹 Lietuvių</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 11.586 8.707 10.293a1 1 0 00-1.414 1.414l2 2z"/></svg>
+            </div>
+          </div>
+          <a href="dashboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🏠</span><span id="navDashboard">Dashboard</span></a>
+          <a href="leaderboard.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center" id="leaderboardLink"><span class="mr-2">🏆</span><span id="navLeaderboard">Leaderboard</span></a>
+          <a href="settings.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">⚙️</span><span id="navSettings">Settings</span></a>
+          <a href="profile.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">👤</span><span id="navProfile">Profile</span></a>
+          <a href="#" id="logoutBtn" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🚪</span><span id="navLogout">Logout</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome back!</h2>
+      <p class="text-gray-600">Here's your learning progress and AI-powered recommendations.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <!-- Current Grades -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex flex-row items-center justify-between mb-4">
+          <div>
+            <div class="flex items-center space-x-2 text-xl font-bold font-mono"><span>📈</span><span>Current Grades</span></div>
+            <div class="text-gray-500 text-sm font-mono">Your latest academic performance</div>
+          </div>
+          <button class="px-3 py-1 border rounded text-sm flex items-center"><span class="mr-2">🔄</span>Sync</button>
+        </div>
+        <div class="space-y-4 font-mono">
+          <div class="flex justify-between items-center mb-1"><span>Mathematics</span><span class="bg-gray-900 text-white px-2 py-1 rounded text-xs">85%</span></div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2"><div class="bg-gray-900 h-2 rounded-full" style="width:85%"></div></div>
+          <div class="flex justify-between items-center mb-1"><span>Science</span><span class="bg-gray-900 text-white px-2 py-1 rounded text-xs">78%</span></div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2"><div class="bg-gray-900 h-2 rounded-full" style="width:78%"></div></div>
+          <div class="flex justify-between items-center mb-1"><span>English</span><span class="bg-gray-900 text-white px-2 py-1 rounded text-xs">92%</span></div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2"><div class="bg-gray-900 h-2 rounded-full" style="width:92%"></div></div>
+          <div class="flex justify-between items-center mb-1"><span>History</span><span class="bg-gray-900 text-white px-2 py-1 rounded text-xs">80%</span></div>
+          <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-gray-900 h-2 rounded-full" style="width:80%"></div></div>
+        </div>
+      </div>
+      <!-- AI Recommendations -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center space-x-2 text-xl font-bold font-mono mb-2"><span>⚙️</span><span>AI Recommendations</span></div>
+        <div class="text-gray-500 text-sm font-mono mb-4">Personalized suggestions to improve your learning</div>
+        <div class="space-y-3 font-mono">
+          <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400"><p class="text-sm text-gray-700">Focus on algebra practice to improve your math grade</p></div>
+          <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400"><p class="text-sm text-gray-700">Review scientific method concepts in Science</p></div>
+          <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400"><p class="text-sm text-gray-700">Great work in English! Keep up the reading habits</p></div>
+          <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400"><p class="text-sm text-gray-700">Consider studying more about World War II events</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- Quick Actions -->
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
+      <div class="text-2xl font-bold font-mono mb-2">Quick Actions</div>
+      <div class="text-gray-500 text-sm font-mono mb-4">Get started with your learning activities</div>
+      <div class="flex flex-col md:flex-row gap-6 mt-6">
+        <a href="#" class="flex-1 bg-gray-900 text-white rounded-lg p-8 flex flex-col items-center justify-center shadow hover:bg-gray-800 transition">
+          <span class="text-4xl mb-4">⚙️</span>
+          <span class="text-lg font-mono">Start AI Tutoring</span>
+        </a>
+        <button id="viewProgressBtn" class="flex-1 bg-white rounded-lg p-8 flex flex-col items-center justify-center shadow hover:bg-gray-100 transition border border-blue-600 text-blue-600">
+          <span class="text-4xl mb-4">📈</span>
+          <span class="text-lg font-mono text-gray-900">View Progress</span>
+        </button>
+      </div>
+    </div>
+    <!-- Progress Modal -->
+    <div id="progressModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-8 relative">
+        <button id="closeProgressModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+        <h2 class="text-2xl font-bold mb-4">Your Progress</h2>
+        <canvas id="progressChart" class="mb-8" height="120"></canvas>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Achievements</h3>
+          <ul class="list-disc pl-6 text-gray-700">
+            <li>First Login</li>
+            <li>Completed 10 AI Sessions</li>
+            <li>Top 10% on Leaderboard</li>
+            <li>Consistent Study Streak (7 days)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+const translations = {
+  en: {
+    nav: {dashboard: "Dashboard", leaderboard: "Leaderboard", settings: "Settings", profile: "Profile", logout: "Logout"},
+    welcome: "Welcome back!",
+    progress: "Here's your learning progress and AI-powered recommendations.",
+    grades: "Current Grades",
+    gradesDesc: "Your latest academic performance",
+    sync: "Sync",
+    ai: "AI Recommendations",
+    aiDesc: "Personalized suggestions to improve your learning",
+    quick: "Quick Actions",
+    quickDesc: "Get started with your learning activities",
+    startAI: "Start AI Tutoring",
+    viewProgress: "View Progress"
+  },
+  lt: {
+    nav: {dashboard: "Pradžia", leaderboard: "Lyderių lentelė", settings: "Nustatymai", profile: "Profilis", logout: "Atsijungti"},
+    welcome: "Sveikas sugrįžęs!",
+    progress: "Čia tavo mokymosi pažanga ir AI rekomendacijos.",
+    grades: "Dabartiniai pažymiai",
+    gradesDesc: "Tavo naujausi akademiniai rezultatai",
+    sync: "Sinchronizuoti",
+    ai: "AI rekomendacijos",
+    aiDesc: "Personalizuoti pasiūlymai tavo mokymuisi gerinti",
+    quick: "Greiti veiksmai",
+    quickDesc: "Pradėk savo mokymosi veiklas",
+    startAI: "Pradėti AI mokymą",
+    viewProgress: "Peržiūrėti pažangą"
+  },
+  es: {
+    nav: {dashboard: "Tablero", leaderboard: "Tabla de clasificación", settings: "Configuraciones", profile: "Perfil", logout: "Cerrar sesión"},
+    welcome: "¡Bienvenido de nuevo!",
+    progress: "Aquí está tu progreso de aprendizaje y recomendaciones impulsadas por IA.",
+    grades: "Calificaciones actuales",
+    gradesDesc: "Tu rendimiento académico más reciente",
+    sync: "Sincronizar",
+    ai: "Recomendaciones de IA",
+    aiDesc: "Sugerencias personalizadas para mejorar tu aprendizaje",
+    quick: "Acciones rápidas",
+    quickDesc: "Comienza tus actividades de aprendizaje",
+    startAI: "Iniciar tutoría de IA",
+    viewProgress: "Ver progreso"
+  },
+  fr: {
+    nav: {dashboard: "Tableau de bord", leaderboard: "Classement", settings: "Paramètres", profile: "Profil", logout: "Se déconnecter"},
+    welcome: "Bienvenue à nouveau!",
+    progress: "Voici vos progrès d'apprentissage et les recommandations alimentées par l'IA.",
+    grades: "Notes actuelles",
+    gradesDesc: "Vos dernières performances académiques",
+    sync: "Synchroniser",
+    ai: "Recommandations IA",
+    aiDesc: "Suggestions personnalisées pour améliorer votre apprentissage",
+    quick: "Actions rapides",
+    quickDesc: "Commencez vos activités d'apprentissage",
+    startAI: "Démarrer le tutorat IA",
+    viewProgress: "Voir les progrès"
+  },
+  de: {
+    nav: {dashboard: "Armaturenbrett", leaderboard: "Rangliste", settings: "Einstellungen", profile: "Profil", logout: "Abmelden"},
+    welcome: "Willkommen zurück!",
+    progress: "Hier sind Ihre Lernfortschritte und KI-gestützte Empfehlungen.",
+    grades: "Aktuelle Noten",
+    gradesDesc: "Ihre neuesten akademischen Leistungen",
+    sync: "Synchronisieren",
+    ai: "KI-Empfehlungen",
+    aiDesc: "Personalisierte Vorschläge zur Verbesserung Ihres Lernens",
+    quick: "Schnellaktionen",
+    quickDesc: "Beginnen Sie mit Ihren Lernaktivitäten",
+    startAI: "KI-Tutoring starten",
+    viewProgress: "Fortschritt anzeigen"
+  },
+  ru: {
+    nav: {dashboard: "Панель", leaderboard: "Таблица лидеров", settings: "Настройки", profile: "Профиль", logout: "Выйти"},
+    welcome: "С возвращением!",
+    progress: "Вот ваш прогресс в обучении и рекомендации на основе ИИ.",
+    grades: "Текущие оценки",
+    gradesDesc: "Ваши последние академические успехи",
+    sync: "Синхронизировать",
+    ai: "Рекомендации ИИ",
+    aiDesc: "Персонализированные предложения для улучшения обучения",
+    quick: "Быстрые действия",
+    quickDesc: "Начните свои учебные занятия",
+    startAI: "Начать обучение с ИИ",
+    viewProgress: "Посмотреть прогресс"
+  }
+};
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  const t = translations[lang] || translations['en'];
+  document.getElementById('navDashboard').textContent = t.nav.dashboard;
+  document.getElementById('navLeaderboard').textContent = t.nav.leaderboard;
+  document.getElementById('navSettings').textContent = t.nav.settings;
+  document.getElementById('navProfile').textContent = t.nav.profile;
+  document.getElementById('navLogout').textContent = t.nav.logout;
+  document.querySelector('h2').textContent = t.welcome;
+  document.querySelector('p.text-gray-600').textContent = t.progress;
+  document.querySelector('.font-mono.text-xl span:last-child').textContent = t.grades;
+  document.querySelector('.font-mono.text-gray-500').textContent = t.gradesDesc;
+  document.querySelector('button.px-3').innerHTML = `<span class="mr-2">🔄</span>${t.sync}`;
+  document.querySelector('.bg-white.rounded-lg.shadow.p-6 .font-mono.mb-2 span:last-child').textContent = t.ai;
+  document.querySelector('.bg-white.rounded-lg.shadow.p-6 .text-gray-500').textContent = t.aiDesc;
+  document.querySelector('.bg-white.rounded-lg.shadow.p-6.mb-8 .font-mono.mb-2').textContent = t.quick;
+  document.querySelector('.bg-white.rounded-lg.shadow.p-6.mb-8 .text-gray-500').textContent = t.quickDesc;
+  document.querySelectorAll('.bg-white.rounded-lg.shadow.p-6.mb-8 .font-mono').forEach((el, i) => {
+    if (i === 0) el.textContent = t.startAI;
+    if (i === 1) el.textContent = t.viewProgress;
+  });
+}
+document.getElementById('languageSelector').addEventListener('change', function() {
+  setLanguage(this.value);
+});
+window.addEventListener('DOMContentLoaded', function() {
+  const lang = localStorage.getItem('lang') || 'en';
+  document.getElementById('languageSelector').value = lang;
+  setLanguage(lang);
+  // Logout button
+  document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  });
+  // Leaderboard link refresh if already on leaderboard
+  const leaderboardLink = document.getElementById('leaderboardLink');
+  if (window.location.pathname.endsWith('leaderboard.html') && leaderboardLink) {
+    leaderboardLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.reload();
+    });
+  }
+});
+document.getElementById('viewProgressBtn').addEventListener('click', function() {
+  document.getElementById('progressModal').classList.remove('hidden');
+  // Fetch progress data and render chart
+  fetch('progress.php')
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        if (window.progressChartInstance) window.progressChartInstance.destroy();
+        const labels = ['Q1', 'Q2', 'Q3', 'Q4'];
+        const datasets = data.progress.map(subject => ({
+          label: subject.subject,
+          data: subject.progress,
+          fill: false,
+          borderColor: getRandomColor(),
+          tension: 0.2
+        }));
+        window.progressChartInstance = new Chart(ctx, {
+          type: 'line',
+          data: { labels, datasets },
+          options: {
+            responsive: true,
+            plugins: { legend: { position: 'top' } },
+            scales: { y: { beginAtZero: true, max: 100 } }
+          }
+        });
+      }
+    });
+});
+document.getElementById('closeProgressModal').addEventListener('click', function() {
+  document.getElementById('progressModal').classList.add('hidden');
+});
+function getRandomColor() {
+  const colors = ['#2563eb', '#059669', '#f59e42', '#e11d48', '#a21caf', '#fbbf24'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+    </script>
+  </main>
+</body>
+</html>
