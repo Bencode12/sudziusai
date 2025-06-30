@@ -7,14 +7,14 @@ It was made only with that intention.
 
 | Status                                                                | Project                                                             |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------|
-|![???](https://img.shields.io/badge/status-???-purple)   | Tamo API                                           |  
-|![???](https://img.shields.io/badge/status-???-purple)   | Languages                                          |  
-|![???](https://img.shields.io/badge/status-???-purple)   | Link, slides creation/editing, image and photo ocr | 
-|![???](https://img.shields.io/badge/status-???-purple)   | AI suggestions                                     |
-|![???](https://img.shields.io/badge/status-???-purple)   | Progress                                           |
-|![???](https://img.shields.io/badge/status-???-purple)   | Charts                                             |
-|![???](https://img.shields.io/badge/status-???-purple)   | More ai capability (tsg daugiau subjektu)          |
-|![???](https://img.shields.io/badge/status-???-purple)   | Leaderboard                                        |
-|![???](https://img.shields.io/badge/status-???-purple)   | Manim Videos with ai assistance and actual problems|
-|![???](https://img.shields.io/badge/status-???-purple)   | Reccomendations                                    |
-|![???](https://img.shields.io/badge/status-???-purple)   | Eduka answers                                      |
+|![???](https://img.shields.io/badge/status-NC-purple)   | Tamo API                                           |  
+|![???](https://img.shields.io/badge/status-NC-purple)   | Languages                                          |  
+|![???](https://img.shields.io/badge/status-NC-purple)   | Link, slides creation/editing, image and photo ocr | 
+|![???](https://img.shields.io/badge/status-NC-purple)   | AI suggestions                                     |
+|![???](https://img.shields.io/badge/status-NC-purple)   | Progress                                           |
+|![???](https://img.shields.io/badge/status-NC-purple)   | Charts                                             |
+|![???](https://img.shields.io/badge/status-NC-purple)   | More ai capability (tsg daugiau subjektu)          |
+|![???](https://img.shields.io/badge/status-NC-purple)   | Leaderboard                                        |
+|![???](https://img.shields.io/badge/status-NC-purple)   | Manim Videos with ai assistance and actual problems|
+|![???](https://img.shields.io/badge/status-NC-purple)   | Reccomendations                                    |
+|![???](https://img.shields.io/badge/status-NC-purple)   | Eduka answers                                      |
