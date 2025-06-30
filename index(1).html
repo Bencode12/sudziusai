@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SudžiusAI</title>
+  <meta name="description" content="SudžiusAI - Lovable Generated Project" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-3">
+          <span class="h-8 w-8 text-blue-600">📖</span>
+          <h1 class="text-xl font-bold text-gray-900">SudžiusAI</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative inline-block w-48">
+            <select id="languageSelector" class="block appearance-none w-full bg-white border border-gray-300 hover:border-blue-500 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline">
+              <option value="en">🇺🇸 English</option>
+              <option value="lt">🇱🇹 Lietuvių</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="ru">🇷🇺 Русский</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 11.586 8.707 10.293a1 1 0 00-1.414 1.414l2 2z"/></svg>
+            </div>
+          </div>
+          <a href="login.html" class="px-3 py-2 text-gray-700 hover:bg-gray-100 rounded flex items-center"><span class="mr-2">🚪</span>Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+          The Future of
+          <span class="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            AI-Powered Learning
+          </span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Experience next-generation education with AI tutoring, OCR technology, interactive content creation, 
+          and comprehensive analytics. Transform how you learn with our cutting-edge platform.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a href="signup.html" class="w-full sm:w-auto">
+            <button class="w-full sm:w-auto text-lg px-8 py-3 bg-blue-600 text-white rounded font-semibold hover:bg-blue-700 transition">Start Learning Now</button>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-blue-600">10+</div>
+            <div class="text-gray-600">Advanced Features</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-purple-600">6+</div>
+            <div class="text-gray-600">Languages Supported</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-indigo-600">∞</div>
+            <div class="text-gray-600">Learning Possibilities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Powerful Features in Development
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore our comprehensive roadmap of cutting-edge educational technologies
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 border rounded-lg p-6">
+            <div class="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-lg bg-blue-500 text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8"/></svg>
+              </div>
+            </div>
+            <div class="text-lg font-semibold mb-1">Tamo API Integration</div>
+            <div class="text-sm text-gray-600">Seamlessly sync your grades and academic data from Tamo platform</div>
+          </div>
+          <div class="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 border rounded-lg p-6">
+            <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-lg bg-green-500 text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              </div>
+            </div>
+            <div class="text-lg font-semibold mb-1">Multi-Language Support</div>
+            <div class="text-sm text-gray-600">Learn in your preferred language with full localization support</div>
+          </div>
+          <div class="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 border rounded-lg p-6">
+            <div class="absolute top-0 left-0 w-full h-1 bg-purple-500"></div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-lg bg-purple-500 text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              </div>
+            </div>
+            <div class="text-lg font-semibold mb-1">Interactive Slides & Links</div>
+            <div class="text-sm text-gray-600">Create, edit and share educational content with rich media support</div>
+          </div>
+          <div class="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 border rounded-lg p-6">
+            <div class="absolute top-0 left-0 w-full h-1 bg-orange-500"></div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-lg bg-orange-500 text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A2 2 0 0020 6.382V5a2 2 0 00-2-2H6a2 2 0 00-2 2v1.382a2 2 0 00.447 1.342L9 10m6 0v10a2 2 0 01-2 2H7a2 2 0 01-2-2V10m11 0l-4.553 2.276A2 2 0 0112 13.618V15a2 2 0 002 2h3a2 2 0 002-2v-1.382a2 2 0 00-.447-1.342L15 10z"/></svg>
+              </div>
+            </div>
+            <div class="text-lg font-semibold mb-1">Image & Photo OCR</div>
+            <div class="text-sm text-gray-600">Extract text from images and photos for instant learning assistance</div>
+          </div>
+          <div class="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 border rounded-lg p-6">
+            <div class="absolute top-0 left-0 w-full h-1 bg-indigo-500"></div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-lg bg-indigo-500 text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m4 0h-1v-4h-1m4 0h-1v-4h-1"/></svg>
+              </div>
+            </div>
+            <div class="text-lg font-semibold mb-1">AI-Powered Suggestions</div>
+            <div class="text-sm text-gray-600">Get personalized recommendations based on your learning patterns</div>
+          </div>
+          <div class="relative overflow-hidden hover:shadow-lg transition-shadow duration-300 border rounded-lg p-6">
+            <div class="absolute top-0 left-0 w-full h-1 bg-blue-400"></div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-3 rounded-lg bg-blue-400 text-white">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8"/></svg>
+              </div>
+            </div>
+            <div class="text-lg font-semibold mb-1">Progress Analytics</div>
+            <div class="text-sm text-gray-600">Track your learning journey with detailed charts and insights</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <svg class="h-8 w-8 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 12V4m0 0L3 9m9-5l9 5"/></svg>
+            <span class="text-2xl font-bold">SudžiusAI</span>
+          </div>
+          <p class="text-gray-400 max-w-md">
+            Empowering students worldwide with intelligent learning solutions, 
+            AI-powered tutoring, and comprehensive educational tools.
+          </p>
+        </div>
+        <div></div>
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="help-center.html" class="hover:text-white transition-colors">Help Center</a></li>
+            <li><a href="contact-us.html" class="hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>© 2024 SudžiusAI. Revolutionizing education with artificial intelligence.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Translation strings for all visible texts, including navigation and footer
+    const translations = {
+      en: {
+        heroTitle: 'The Future of',
+        heroSubtitle: 'AI-Powered Learning',
+        heroDesc: 'Experience next-generation education with AI tutoring, OCR technology, interactive content creation, and comprehensive analytics. Transform how you learn with our cutting-edge platform.',
+        startLearning: 'Start Learning Now',
+        featuresTitle: 'Powerful Features in Development',
+        featuresDesc: 'Explore our comprehensive roadmap of cutting-edge educational technologies',
+        features: [
+          {title: 'Tamo API Integration', desc: 'Seamlessly sync your grades and academic data from Tamo platform'},
+          {title: 'Multi-Language Support', desc: 'Learn in your preferred language with full localization support'},
+          {title: 'Interactive Slides & Links', desc: 'Create, edit and share educational content with rich media support'},
+          {title: 'Image & Photo OCR', desc: 'Extract text from images and photos for instant learning assistance'},
+          {title: 'Progress Analytics', desc: 'Track your learning journey with detailed charts and insights'},
+          {title: 'Competitive Leaderboard', desc: 'Compete with peers and track your ranking among other learners'},
+          {title: 'Specialized Videos', desc: 'Watch custom educational videos for complex problems'},
+          {title: 'Smart Recommendations', desc: 'Receive tailored suggestions to improve weak areas and excel'},
+          {title: 'Eduka Answers', desc: 'Access comprehensive answers and explanations for various subjects'}
+        ],
+        stats: ['Advanced Features', 'Languages Supported', 'Learning Possibilities'],
+        subjectsTitle: 'Master Any Subject',
+        subjectsDesc: 'Our AI adapts to help you excel across all academic disciplines',
+        subjects: ['Mathematics','Physics','Chemistry','Biology','History','Literature','Geography','Computer Science','Languages'],
+        howWorksTitle: 'How LearnAI Works',
+        howWorks: [
+          {title: 'Connect & Sync', desc: 'Connect your Tamo account and sync your grades automatically. Our system analyzes your academic performance in real-time.'},
+          {title: 'AI Analysis & OCR', desc: 'Upload images of your homework or notes. Our OCR technology extracts text and our AI provides instant explanations and solutions.'},
+          {title: 'Interactive Learning', desc: 'Create interactive slides, watch AI-generated Manim videos, and compete with peers on the leaderboard while tracking your progress.'}
+        ],
+        ctaTitle: 'Ready to Transform Your Learning Journey?',
+        ctaDesc: 'Join the future of education with AI-powered tutoring, comprehensive analytics, and interactive content creation.',
+        getStarted: 'Get Started Free',
+        login: 'Login',
+        navProfile: 'Profile',
+        navDashboard: 'Dashboard',
+        navLeaderboard: 'Leaderboard',
+        navSettings: 'Settings',
+        navLogout: 'Logout',
+        footerDesc: 'Empowering students worldwide with intelligent learning solutions, AI-powered tutoring, and comprehensive educational tools.',
+        support: 'Support',
+        helpCenter: 'Help Center',
+        contactUs: 'Contact Us',
+        privacyPolicy: 'Privacy Policy',
+        copyright: '© 2024 SudžiusAI. Revolutionizing education with artificial intelligence.'
+      },
+      lt: {
+        heroTitle: 'Ateities',
+        heroSubtitle: 'DI pagrįstas mokymasis',
+        heroDesc: 'Patirkite naujos kartos mokymąsi su DI korepetitoriumi, OCR technologija, interaktyviu turinio kūrimu ir išsamia analitika. Keiskite savo mokymosi būdą su mūsų pažangia platforma.',
+        startLearning: 'Pradėti mokytis',
+        featuresTitle: 'Galingos kuriamos funkcijos',
+        featuresDesc: 'Atraskite mūsų pažangių edukacinių technologijų planą',
+        features: [
+          {title: 'Tamo API integracija', desc: 'Sinchronizuokite pažymius ir akademinius duomenis iš Tamo platformos'},
+          {title: 'Daugiakalbė parama', desc: 'Mokykitės pasirinkta kalba su pilnu lokalizavimu'},
+          {title: 'Interaktyvios skaidrės ir nuorodos', desc: 'Kurkite, redaguokite ir dalinkitės edukaciniu turiniu su medijos palaikymu'},
+          {title: 'Vaizdų ir nuotraukų OCR', desc: 'Ištraukite tekstą iš vaizdų ir nuotraukų momentinei pagalbai'},
+          {title: 'Progreso analizė', desc: 'Sekite savo mokymosi kelią su išsamia analitika'},
+          {title: 'Lyderių lentelė', desc: 'Varžykitės su kitais ir sekite savo poziciją tarp mokinių'},
+          {title: 'Specializuoti vaizdo įrašai', desc: 'Žiūrėkite individualius edukacinius vaizdo įrašus sudėtingoms temoms'},
+          {title: 'Išmanios rekomendacijos', desc: 'Gaukite personalizuotus patarimus, kaip tobulėti'},
+          {title: 'Eduka atsakymai', desc: 'Gaukite išsamius atsakymus ir paaiškinimus įvairiomis temomis'}
+        ],
+        stats: ['Pažangios funkcijos', 'Palaikomos kalbos', 'Neribotos galimybės'],
+        subjectsTitle: 'Įvaldykite bet kurį dalyką',
+        subjectsDesc: 'Mūsų DI prisitaiko, kad padėtų jums tobulėti visose disciplinose',
+        subjects: ['Matematika','Fizika','Chemija','Biologija','Istorija','Literatūra','Geografija','Informatika','Kalbos'],
+        howWorksTitle: 'Kaip veikia LearnAI',
+        howWorks: [
+          {title: 'Prisijunkite ir sinchronizuokite', desc: 'Prisijunkite prie Tamo paskyros ir automatiškai sinchronizuokite pažymius. Sistema analizuoja jūsų rezultatus realiu laiku.'},
+          {title: 'DI analizė ir OCR', desc: 'Įkelkite namų darbų ar užrašų nuotraukas. OCR ištraukia tekstą, o DI pateikia paaiškinimus ir sprendimus.'},
+          {title: 'Interaktyvus mokymasis', desc: 'Kurkite skaidres, žiūrėkite DI vaizdo įrašus ir varžykitės lyderių lentelėje stebėdami progresą.'}
+        ],
+        ctaTitle: 'Pasiruošę pakeisti savo mokymosi kelią?',
+        ctaDesc: 'Prisijunkite prie ateities su DI korepetitoriumi, analitika ir interaktyviu turiniu.',
+        getStarted: 'Pradėti nemokamai',
+        login: 'Prisijungti',
+        navProfile: 'Profilis',
+        navDashboard: 'Pagrindinis',
+        navLeaderboard: 'Lyderių lentelė',
+        navSettings: 'Nustatymai',
+        navLogout: 'Atsijungti',
+        footerDesc: 'Įgaliname mokinius visame pasaulyje su išmaniais mokymosi sprendimais, DI korepetitoriumi ir išsamiais edukaciniais įrankiais.',
+        support: 'Pagalba',
+        helpCenter: 'Pagalbos centras',
+        contactUs: 'Susisiekite',
+        privacyPolicy: 'Privatumo politika',
+        copyright: '© 2024 SudžiusAI. Švietimo revoliucija su dirbtiniu intelektu.'
+      },
+      es: {
+        heroTitle: 'El futuro de',
+        heroSubtitle: 'Aprendizaje impulsado por IA',
+        heroDesc: 'Experimenta la educación de próxima generación con tutoría de IA, tecnología OCR, creación de contenido interactivo y análisis integral. Transforma tu aprendizaje con nuestra plataforma de vanguardia.',
+        startLearning: 'Comienza a aprender ahora',
+        featuresTitle: 'Potentes funciones en desarrollo',
+        featuresDesc: 'Explora nuestra hoja de ruta integral de tecnologías educativas de vanguardia',
+        features: [
+          {title: 'Integración API Tamo', desc: 'Sincroniza tus calificaciones y datos académicos desde la plataforma Tamo'},
+          {title: 'Soporte multilingüe', desc: 'Aprende en tu idioma preferido con soporte de localización completo'},
+          {title: 'Diapositivas y enlaces interactivos', desc: 'Crea, edita y comparte contenido educativo con soporte multimedia'},
+          {title: 'OCR de imágenes y fotos', desc: 'Extrae texto de imágenes y fotos para asistencia instantánea'},
+          {title: 'Análisis de progreso', desc: 'Sigue tu aprendizaje con gráficos e información detallada'},
+          {title: 'Tabla de clasificación competitiva', desc: 'Compite con otros y sigue tu posición entre los estudiantes'},
+          {title: 'Videos especializados', desc: 'Mira videos educativos personalizados para problemas complejos'},
+          {title: 'Recomendaciones inteligentes', desc: 'Recibe sugerencias personalizadas para mejorar'},
+          {title: 'Respuestas Eduka', desc: 'Accede a respuestas y explicaciones completas para varias materias'}
+        ],
+        stats: ['Funciones avanzadas', 'Idiomas soportados', 'Posibilidades de aprendizaje'],
+        subjectsTitle: 'Domina cualquier materia',
+        subjectsDesc: 'Nuestra IA se adapta para ayudarte a sobresalir en todas las disciplinas académicas',
+        subjects: ['Matemáticas','Física','Química','Biología','Historia','Literatura','Geografía','Informática','Idiomas'],
+        howWorksTitle: 'Cómo funciona LearnAI',
+        howWorks: [
+          {title: 'Conectar y sincronizar', desc: 'Conecta tu cuenta de Tamo y sincroniza tus calificaciones automáticamente. Nuestro sistema analiza tu rendimiento académico en tiempo real.'},
+          {title: 'Análisis de IA y OCR', desc: 'Sube imágenes de tus tareas o notas. Nuestra tecnología OCR extrae texto y nuestra IA proporciona explicaciones y soluciones al instante.'},
+          {title: 'Aprendizaje interactivo', desc: 'Crea diapositivas interactivas, mira videos generados por IA y compite con otros en la tabla de clasificación mientras sigues tu progreso.'}
+        ],
+        ctaTitle: '¿Listo para transformar tu aprendizaje?',
+        ctaDesc: 'Únete al futuro de la educación con tutoría de IA, análisis integral y creación de contenido interactivo.',
+        getStarted: 'Comenzar gratis',
+        login: 'Iniciar sesión',
+        navProfile: 'Perfil',
+        navDashboard: 'Tablero',
+        navLeaderboard: 'Tabla de clasificación',
+        navSettings: 'Configuraciones',
+        navLogout: 'Cerrar sesión',
+        footerDesc: 'Empoderando a estudiantes de todo el mundo con soluciones de aprendizaje inteligentes, tutoría de IA y herramientas educativas integrales.',
+        support: 'Soporte',
+        helpCenter: 'Centro de ayuda',
+        contactUs: 'Contáctanos',
+        privacyPolicy: 'Política de privacidad',
+        copyright: '© 2024 SudžiusAI. Revolucionando la educación con inteligencia artificial.'
+      },
+      fr: {
+        heroTitle: 'Le futur de',
+        heroSubtitle: 'Apprentissage propulsé par l’IA',
+        heroDesc: 'Découvrez l’éducation de nouvelle génération avec tutorat IA, technologie OCR, création de contenu interactif et analyses complètes. Transformez votre apprentissage avec notre plateforme de pointe.',
+        startLearning: 'Commencer à apprendre',
+        featuresTitle: 'Fonctionnalités puissantes en développement',
+        featuresDesc: 'Découvrez notre feuille de route complète des technologies éducatives de pointe',
+        features: [
+          {title: 'Intégration API Tamo', desc: 'Synchronisez vos notes et données académiques depuis la plateforme Tamo'},
+          {title: 'Support multilingue', desc: 'Apprenez dans votre langue préférée avec une localisation complète'},
+          {title: 'Diapositives et liens interactifs', desc: 'Créez, éditez et partagez du contenu éducatif avec support multimédia'},
+          {title: 'OCR d’images et de photos', desc: 'Extrayez du texte des images et photos pour une assistance instantanée'},
+          {title: 'Analyse de progression', desc: 'Suivez votre parcours d’apprentissage avec des graphiques détaillés'},
+          {title: 'Classement compétitif', desc: 'Faites la course avec d’autres et suivez votre position parmi les apprenants'},
+          {title: 'Vidéos spécialisées', desc: 'Regardez des vidéos éducatives personnalisées pour des problèmes complexes'},
+          {title: 'Recommandations intelligentes', desc: 'Recevez des suggestions personnalisées pour progresser'},
+          {title: 'Réponses Eduka', desc: 'Accédez à des réponses et explications complètes pour diverses matières'}
+        ],
+        stats: ['Fonctionnalités avancées', 'Langues supportées', 'Possibilités d’apprentissage'],
+        subjectsTitle: 'Maîtrisez n’importe quelle matière',
+        subjectsDesc: 'Notre IA s’adapte pour vous aider à exceller dans toutes les disciplines académiques',
+        subjects: ['Mathématiques','Physique','Chimie','Biologie','Histoire','Littérature','Géographie','Informatique','Langues'],
+        howWorksTitle: 'Comment fonctionne LearnAI',
+        howWorks: [
+          {title: 'Connecter & synchroniser', desc: 'Connectez votre compte Tamo et synchronisez vos notes automatiquement. Notre système analyse vos performances en temps réel.'},
+          {title: 'Analyse IA & OCR', desc: 'Téléchargez des images de vos devoirs ou notes. Notre technologie OCR extrait le texte et notre IA fournit des explications et solutions instantanées.'},
+          {title: 'Apprentissage interactif', desc: 'Créez des diapositives interactives, regardez des vidéos générées par IA et rivalisez avec d’autres sur le classement tout en suivant vos progrès.'}
+        ],
+        ctaTitle: 'Prêt à transformer votre apprentissage ?',
+        ctaDesc: 'Rejoignez le futur de l’éducation avec tutorat IA, analyses complètes et création de contenu interactif.',
+        getStarted: 'Commencer gratuitement',
+        login: 'Connexion',
+        navProfile: 'Profil',
+        navDashboard: 'Tableau de bord',
+        navLeaderboard: 'Classement',
+        navSettings: 'Paramètres',
+        navLogout: 'Se déconnecter',
+        footerDesc: 'Donner du pouvoir aux étudiants du monde entier avec des solutions d’apprentissage intelligentes, du tutorat IA et des outils éducatifs complets.',
+        support: 'Support',
+        helpCenter: 'Centre d’aide',
+        contactUs: 'Contactez-nous',
+        privacyPolicy: 'Politique de confidentialité',
+        copyright: '© 2024 SudžiusAI. Révolutionner l’éducation avec l’intelligence artificielle.'
+      },
+      de: {
+        heroTitle: 'Die Zukunft des',
+        heroSubtitle: 'KI-gestütztes Lernen',
+        heroDesc: 'Erleben Sie Bildung der nächsten Generation mit KI-Tutoring, OCR-Technologie, interaktiver Inhaltserstellung und umfassender Analytik. Verändern Sie Ihr Lernen mit unserer modernen Plattform.',
+        startLearning: 'Jetzt lernen starten',
+        featuresTitle: 'Leistungsstarke Funktionen in Entwicklung',
+        featuresDesc: 'Entdecken Sie unsere umfassende Roadmap für fortschrittliche Bildungstechnologien',
+        features: [
+          {title: 'Tamo API-Integration', desc: 'Synchronisieren Sie Ihre Noten und akademischen Daten von der Tamo-Plattform'},
+          {title: 'Mehrsprachige Unterstützung', desc: 'Lernen Sie in Ihrer bevorzugten Sprache mit vollständiger Lokalisierung'},
+          {title: 'Interaktive Folien & Links', desc: 'Erstellen, bearbeiten und teilen Sie Bildungsinhalte mit Multimedia-Unterstützung'},
+          {title: 'Bild- & Foto-OCR', desc: 'Extrahieren Sie Text aus Bildern und Fotos für sofortige Hilfe'},
+          {title: 'Fortschrittsanalyse', desc: 'Verfolgen Sie Ihren Lernfortschritt mit detaillierten Diagrammen'},
+          {title: 'Wettbewerbsfähige Rangliste', desc: 'Treten Sie gegen andere an und verfolgen Sie Ihre Position unter den Lernenden'},
+          {title: 'Spezialisierte Videos', desc: 'Sehen Sie sich individuelle Lernvideos für komplexe Probleme an'},
+          {title: 'Intelligente Empfehlungen', desc: 'Erhalten Sie personalisierte Vorschläge zur Verbesserung'},
+          {title: 'Eduka-Antworten', desc: 'Greifen Sie auf umfassende Antworten und Erklärungen für verschiedene Fächer zu'}
+        ],
+        stats: ['Erweiterte Funktionen', 'Unterstützte Sprachen', 'Lernmöglichkeiten'],
+        subjectsTitle: 'Beherrsche jedes Fach',
+        subjectsDesc: 'Unsere KI passt sich an, um Ihnen in allen akademischen Disziplinen zu helfen',
+        subjects: ['Mathematik','Physik','Chemie','Biologie','Geschichte','Literatur','Geografie','Informatik','Sprachen'],
+        howWorksTitle: 'Wie LearnAI funktioniert',
+        howWorks: [
+          {title: 'Verbinden & synchronisieren', desc: 'Verbinden Sie Ihr Tamo-Konto und synchronisieren Sie Ihre Noten automatisch. Unser System analysiert Ihre Leistungen in Echtzeit.'},
+          {title: 'KI-Analyse & OCR', desc: 'Laden Sie Bilder Ihrer Hausaufgaben oder Notizen hoch. Unsere OCR-Technologie extrahiert Text und unsere KI liefert sofortige Erklärungen und Lösungen.'},
+          {title: 'Interaktives Lernen', desc: 'Erstellen Sie interaktive Folien, sehen Sie sich KI-generierte Videos an und konkurrieren Sie mit anderen auf der Rangliste, während Sie Ihren Fortschritt verfolgen.'}
+        ],
+        ctaTitle: 'Bereit, Ihr Lernen zu transformieren?',
+        ctaDesc: 'Treten Sie der Zukunft der Bildung mit KI-Tutoring, umfassender Analytik und interaktiver Inhaltserstellung bei.',
+        getStarted: 'Jetzt kostenlos starten',
+        login: 'Anmelden',
+        navProfile: 'Profil',
+        navDashboard: 'Armaturenbrett',
+        navLeaderboard: 'Rangliste',
+        navSettings: 'Einstellungen',
+        navLogout: 'Abmelden',
+        footerDesc: 'Wir stärken Schüler weltweit mit intelligenten Lernlösungen, KI-Tutoring und umfassenden Bildungstools.',
+        support: 'Support',
+        helpCenter: 'Hilfezentrum',
+        contactUs: 'Kontakt',
+        privacyPolicy: 'Datenschutzrichtlinie',
+        copyright: '© 2024 SudžiusAI. Revolutionierung der Bildung mit künstlicher Intelligenz.'
+      },
+      ru: {
+        heroTitle: 'Будущее',
+        heroSubtitle: 'Обучение с ИИ',
+        heroDesc: 'Ощутите обучение нового поколения с ИИ-репетитором, технологией OCR, созданием интерактивного контента и полной аналитикой. Измените свой подход к обучению с нашей передовой платформой.',
+        startLearning: 'Начать обучение',
+        featuresTitle: 'Мощные функции в разработке',
+        featuresDesc: 'Изучите наш комплексный план передовых образовательных технологий',
+        features: [
+          {title: 'Интеграция Tamo API', desc: 'Синхронизируйте свои оценки и академические данные с платформы Tamo'},
+          {title: 'Многоязычная поддержка', desc: 'Учитесь на предпочитаемом языке с полной локализацией'},
+          {title: 'Интерактивные слайды и ссылки', desc: 'Создавайте, редактируйте и делитесь образовательным контентом с поддержкой мультимедиа'},
+          {title: 'OCR изображений и фото', desc: 'Извлекайте текст из изображений и фотографий для мгновенной помощи'},
+          {title: 'Аналитика прогресса', desc: 'Отслеживайте свой учебный путь с помощью подробных графиков'},
+          {title: 'Соревновательный рейтинг', desc: 'Соревнуйтесь с другими и отслеживайте свою позицию среди учеников'},
+          {title: 'Специализированные видео', desc: 'Смотрите индивидуальные обучающие видео для сложных задач'},
+          {title: 'Умные рекомендации', desc: 'Получайте персонализированные советы для улучшения'},
+          {title: 'Ответы Eduka', desc: 'Получайте полные ответы и объяснения по разным предметам'}
+        ],
+        stats: ['Продвинутые функции', 'Поддерживаемые языки', 'Возможности обучения'],
+        subjectsTitle: 'Освойте любой предмет',
+        subjectsDesc: 'Наш ИИ адаптируется, чтобы помочь вам преуспеть во всех академических дисциплинах',
+        subjects: ['Математика','Физика','Химия','Биология','История','Литература','География','Информатика','Языки'],
+        howWorksTitle: 'Как работает LearnAI',
+        howWorks: [
+          {title: 'Подключение и синхронизация', desc: 'Подключите свой аккаунт Tamo и автоматически синхронизируйте оценки. Наша система анализирует вашу успеваемость в реальном времени.'},
+          {title: 'ИИ-анализ и OCR', desc: 'Загрузите изображения домашних заданий или заметок. Наша технология OCR извлекает текст, а ИИ мгновенно дает объяснения и решения.'},
+          {title: 'Интерактивное обучение', desc: 'Создавайте слайды, смотрите видео, сгенерированные ИИ, и соревнуйтесь с другими в рейтинге, отслеживая свой прогресс.'}
+        ],
+        ctaTitle: 'Готовы изменить свой путь обучения?',
+        ctaDesc: 'Присоединяйтесь к будущему образования с ИИ-репетитором, аналитикой и интерактивным контентом.',
+        getStarted: 'Начать бесплатно',
+        login: 'Войти',
+        navProfile: 'Профиль',
+        navDashboard: 'Панель',
+        navLeaderboard: 'Таблица лидеров',
+        navSettings: 'Настройки',
+        navLogout: 'Выйти',
+        footerDesc: 'Даем возможность ученикам по всему миру с помощью интеллектуальных решений для обучения, ИИ-репетитора и комплексных образовательных инструментов.',
+        support: 'Поддержка',
+        helpCenter: 'Центр помощи',
+        contactUs: 'Связаться с нами',
+        privacyPolicy: 'Политика конфиденциальности',
+        copyright: '© 2024 SudžiusAI. Революция в образовании с искусственным интеллектом.'
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations['en'];
+      // Hero
+      document.querySelector('h1.text-5xl').childNodes[0].textContent = t.heroTitle + ' ';
+      document.querySelector('h1.text-5xl span').textContent = t.heroSubtitle;
+      document.querySelector('p.text-xl.text-gray-600.mb-8').textContent = t.heroDesc;
+      document.querySelector('button.bg-blue-600').textContent = t.startLearning;
+      // Stats
+      const stats = document.querySelectorAll('.grid-cols-1.md\:grid-cols-3 .text-gray-600');
+      t.stats.forEach((s, i) => { if(stats[i]) stats[i].textContent = s; });
+      // Features
+      document.querySelector('h2.text-4xl').textContent = t.featuresTitle;
+      document.querySelector('p.text-xl.text-gray-600.max-w-3xl').textContent = t.featuresDesc;
+      const featureTitles = document.querySelectorAll('.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 .text-lg.font-semibold');
+      const featureDescs = document.querySelectorAll('.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 .text-sm.text-gray-600');
+      t.features.forEach((f, i) => {
+        if(featureTitles[i]) featureTitles[i].textContent = f.title;
+        if(featureDescs[i]) featureDescs[i].textContent = f.desc;
+      });
+      // Subjects
+      document.querySelector('h2.text-3xl.font-bold.text-gray-900.mb-8').textContent = t.subjectsTitle;
+      document.querySelector('p.text-lg.text-gray-600.mb-12').textContent = t.subjectsDesc;
+      const subjectSpans = document.querySelectorAll('.flex.flex-wrap.justify-center.gap-3 span');
+      t.subjects.forEach((s, i) => { if(subjectSpans[i]) subjectSpans[i].textContent = s; });
+      // How it works
+      document.querySelector('h2.text-3xl.font-bold.text-center.text-gray-900.mb-12').textContent = t.howWorksTitle;
+      const howTitles = document.querySelectorAll('.space-y-12 .text-xl.font-semibold');
+      const howDescs = document.querySelectorAll('.space-y-12 .text-gray-600');
+      t.howWorks.forEach((h, i) => {
+        if(howTitles[i]) howTitles[i].textContent = h.title;
+        if(howDescs[i*2]) howDescs[i*2].textContent = h.desc; // skip p in .mb-8
+      });
+      // CTA
+      document.querySelector('section.bg-gradient-to-r h2').textContent = t.ctaTitle;
+      document.querySelector('section.bg-gradient-to-r p.text-xl').textContent = t.ctaDesc;
+      document.querySelector('section.bg-gradient-to-r button').textContent = t.getStarted;
+      // Login
+      document.querySelector('a[href="login.html"] span+span').textContent = t.login;
+      // Navigation (if present)
+      const nav = document.querySelector('header');
+      if(nav) {
+        // Profile
+        const profileLink = nav.querySelector('a[href="profile.html"] span+span');
+        if(profileLink) profileLink.textContent = t.navProfile;
+        // Dashboard
+        const dashLink = nav.querySelector('a[href="dashboard.html"] span+span');
+        if(dashLink) dashLink.textContent = t.navDashboard;
+        // Leaderboard
+        const leadLink = nav.querySelector('a[href="leaderboard.html"] span+span');
+        if(leadLink) leadLink.textContent = t.navLeaderboard;
+        // Settings
+        const setLink = nav.querySelector('a[href="settings.html"] span+span');
+        if(setLink) setLink.textContent = t.navSettings;
+        // Logout
+        const logoutLink = nav.querySelector('a[href="logout"] span+span');
+        if(logoutLink) logoutLink.textContent = t.navLogout;
+      }
+      // Footer
+      document.querySelector('footer p.text-gray-400.max-w-md').textContent = t.footerDesc;
+      document.querySelector('footer h4').textContent = t.support;
+      const supportLinks = document.querySelectorAll('footer ul li a');
+      if(supportLinks[0]) supportLinks[0].textContent = t.helpCenter;
+      if(supportLinks[1]) supportLinks[1].textContent = t.contactUs;
+      if(supportLinks[2]) supportLinks[2].textContent = t.privacyPolicy;
+      document.querySelector('footer .border-t p').textContent = t.copyright;
+    }
+    document.getElementById('languageSelector').addEventListener('change', function() {
+      setLanguage(this.value);
+    });
+    setLanguage(document.getElementById('languageSelector').value);
+  </script>
+</body>
+</html>
